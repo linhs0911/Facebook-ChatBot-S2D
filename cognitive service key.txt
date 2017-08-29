@@ -1,0 +1,12 @@
+face api
+end point¡Ghttps://southeastasia.api.cognitive.microsoft.com/face/v1.0
+key¡Gdf30d486a01b4ee9bbf913a324795d62
+
+loser group¡G
+	loserperson's personId¡G6449c1a2-988b-46f7-b07a-da037c175f29
+winer group¡G
+	winerperson's personId¡G383b0c3a-cfc7-4e12-a992-0d7328cee0a0
+
+emotion
+end point¡Ghttps://westus.api.cognitive.microsoft.com/emotion/v1.0
+key¡Gf09cc9201a0046cb821772ec16299798
