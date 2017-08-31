@@ -16,10 +16,12 @@ using System.Net.Http.Headers;
 using System.IO;
 using Microsoft.ProjectOxford.Face;
 using Newtonsoft.Json.Linq;
+using System.Data.SqlClient;
 
+    
 namespace Single2Double
 {
-    
+
     [BotAuthentication]
     public class MessagesController : ApiController
     {
@@ -32,27 +34,79 @@ namespace Single2Double
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
+
+
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
+            //連接資料庫
+            var cb = new SqlConnectionStringBuilder();
+            cb.DataSource = "s2dchat.database.windows.net";
+            cb.UserID = "yezifa2005";
+            cb.Password = "E.860527e";
+            cb.InitialCatalog = "S2D";
+
+            
 
             Activity reply = activity.CreateReply();
             if (activity.Type == ActivityTypes.Message)
             {
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
                 //await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
-                
-
+               
                 if (activity.Attachments?.Count > 0 && activity.Attachments.First().ContentType.StartsWith("image"))
-                 {
-                     //User傳送一張照片
-                     ImageTemplate(reply, activity.Attachments.First().ContentUrl);
-                 }
-                else {
+                {
+                    //User傳送一張照片
+                    ImageTemplate(reply, activity.Attachments.First().ContentUrl);
+
+                }
+                else if (activity.Text == "我好飢渴")
+                {
+                    string url="";
+                    
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {   //隨機選擇照片
+                            Random rnd = new Random();
+                            //目前資料庫的照片張數
+                            int rd = rnd.Next(1, 10);
+                            //建立資料庫連線
+                            connection.Open();
+                            //撰寫query
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("SELECT [url] ");
+                            sb.Append("FROM [dbo].[save_url]");
+                            sb.Append("Where [id]=" + rd);
+                            String sql = sb.ToString();
+                            using (var cmd = new SqlCommand(sql, connection))
+                            { 
+                                url = (string)cmd.ExecuteScalar();
+                            }
+
+
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+                    
+                   
+
+                    Attachment att = new Attachment();
+                    att.ContentType = "image/png";
+                    att.ContentUrl =url;
+                    reply.Attachments.Add(att);
+                    
+                }
+                else
+                {
                     if (activity.ChannelId == "facebook")
                     {
                         var fbData = JsonConvert.DeserializeObject<FBChannelModel>(activity.ChannelData.ToString());
-                        Rootobject ttt=new Rootobject();
-                       
+                        Rootobject ttt = new Rootobject();
+
                         // ttt.faceId = faceid;
                         ttt.personGroupId = "loser";
                         ttt.personId = "6449c1a2-988b-46f7-b07a-da037c175f29";
@@ -80,9 +134,9 @@ namespace Single2Double
                                 ttt.faceId = id.ToString();
                                 winer.faceId = id.ToString();
                                 string body = JsonConvert.SerializeObject(ttt).ToString();
-                                string body2= JsonConvert.SerializeObject(winer).ToString();
-                                MakeRequest(body, activity, "單身",Confidence_s);
-                                MakeRequest(body2,activity, "不是單身", Confidence_ns);
+                                string body2 = JsonConvert.SerializeObject(winer).ToString();
+                                MakeRequest(body, activity, "單身", Confidence_s);
+                                MakeRequest(body2, activity, "不是單身", Confidence_ns);
                                 // await connector.Conversations.ReplyToActivityAsync(reply);
                                 Confidence_s = Confidence_s - Confidence_ns;
                                 if (Confidence_s > 0)
@@ -96,26 +150,26 @@ namespace Single2Double
                                     reply.Text = "這個人應該不是是單身";
                                     await connector.Conversations.ReplyToActivityAsync(reply);
                                 }
-                            
+
                             }
                             // Console.WriteLine("Hit ENTER to exit...");
                             // Console.ReadLine();
-                            
+
                         }
-                       
+
                     }
-                    
+
 
                 }
 
                 await connector.Conversations.ReplyToActivityAsync(reply);
-               
+
             }
-            
+
             else
             {
                 // HandleSystemMessage(activity);
-                
+
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
@@ -151,10 +205,10 @@ namespace Single2Double
 
                 datareply.Text = await response.Content.ReadAsStringAsync();
                 JObject rss = JObject.Parse(datareply.Text);
-                 Confidence = (float)rss["confidence"];
-               
+                Confidence = (float)rss["confidence"];
+
                 datareply.Text = $"他跟{status}的人的長相有 {Confidence} 的相似度";
-               await connector.Conversations.ReplyToActivityAsync(datareply);
+                await connector.Conversations.ReplyToActivityAsync(datareply);
             }
 
         }
@@ -192,6 +246,30 @@ namespace Single2Double
             reply.Attachments = att;
 
         }
+        private void CreateButton(Activity reply)
+        {
+            List<Attachment> att = new List<Attachment>();
+
+            att.Add(new HeroCard()
+
+            {
+                Title = "主人早安~我口以腫摩幫你呢?<3",
+                Buttons = new List<CardAction>()
+
+                {
+
+                    new CardAction(ActionTypes.PostBack, "我好飢渴", value: $"Hunger"),
+                    new CardAction(ActionTypes.PostBack, "我只是想打招呼", value: $"Hi")
+
+                }
+
+            }.ToAttachment());
+
+
+
+            reply.Attachments = att;
+
+        } 
 
         private Activity HandleSystemMessage(Activity message)
         {
@@ -221,5 +299,8 @@ namespace Single2Double
 
             return null;
         }
+
     }
+
 }
+
