@@ -1,5 +1,4 @@
 ﻿
-
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -18,7 +17,7 @@ using Microsoft.ProjectOxford.Face;
 using Newtonsoft.Json.Linq;
 using System.Data.SqlClient;
 
-    
+
 namespace Single2Double
 {
 
@@ -45,24 +44,27 @@ namespace Single2Double
             cb.Password = "E.860527e";
             cb.InitialCatalog = "S2D";
 
-            
+
 
             Activity reply = activity.CreateReply();
             if (activity.Type == ActivityTypes.Message)
             {
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
                 //await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
-               
+
                 if (activity.Attachments?.Count > 0 && activity.Attachments.First().ContentType.StartsWith("image"))
                 {
                     //User傳送一張照片
                     ImageTemplate(reply, activity.Attachments.First().ContentUrl);
 
                 }
+                else if (activity.Text.ToString() == "請上傳一張照片") {
+                    reply.Text = "請上傳一張照片";
+                }
                 else if (activity.Text == "我好飢渴")
                 {
-                    string url="";
-                    
+                    string url = "";
+
                     try
                     {
                         using (var connection = new SqlConnection(cb.ConnectionString))
@@ -79,7 +81,7 @@ namespace Single2Double
                             sb.Append("Where [id]=" + rd);
                             String sql = sb.ToString();
                             using (var cmd = new SqlCommand(sql, connection))
-                            { 
+                            {
                                 url = (string)cmd.ExecuteScalar();
                             }
 
@@ -91,14 +93,16 @@ namespace Single2Double
                         reply.Text = "沒成功";
                         await connector.Conversations.ReplyToActivityAsync(reply);
                     }
-                    
-                   
+
+
 
                     Attachment att = new Attachment();
                     att.ContentType = "image/png";
-                    att.ContentUrl =url;
-                    reply.Attachments.Add(att);
+                    att.ContentUrl = url;
+                    reply.Text = "請慢慢享用^^";
                     
+                    reply.Attachments.Add(att);
+
                 }
                 else
                 {
@@ -269,7 +273,7 @@ namespace Single2Double
 
             reply.Attachments = att;
 
-        } 
+        }
 
         private Activity HandleSystemMessage(Activity message)
         {
@@ -303,4 +307,3 @@ namespace Single2Double
     }
 
 }
-
