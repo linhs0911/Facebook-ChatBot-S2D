@@ -20,7 +20,11 @@ using System.Data.SqlClient;
 
 namespace Single2Double
 {
-
+    public class StringTable
+    {
+        public string[] ColumnNames { get; set; }
+        public string[,] Values { get; set; }
+    }
     [BotAuthentication]
     public class MessagesController : ApiController
     {
@@ -58,8 +62,13 @@ namespace Single2Double
                     ImageTemplate(reply, activity.Attachments.First().ContentUrl);
 
                 }
-                else if (activity.Text.ToString() == "請上傳一張照片") {
+                else if (activity.Text.ToString() == "請上傳一張照片")
+                {
                     reply.Text = "請上傳一張照片";
+                }
+                else if (activity.Text.ToString() == "測試異性對我的喜好")
+                {
+                    await InvokeRequestResponseService(reply);
                 }
                 else if (activity.Text == "我好飢渴")
                 {
@@ -100,7 +109,7 @@ namespace Single2Double
                     att.ContentType = "image/png";
                     att.ContentUrl = url;
                     reply.Text = "請慢慢享用^^";
-                    
+
                     reply.Attachments.Add(att);
 
                 }
@@ -262,8 +271,8 @@ namespace Single2Double
 
                 {
 
-                    new CardAction(ActionTypes.PostBack, "我好飢渴", value: $"Hunger"),
-                    new CardAction(ActionTypes.PostBack, "我只是想打招呼", value: $"Hi")
+                    new CardAction(ActionTypes.PostBack, "我好飢渴", value: "Hunger"),
+                    new CardAction(ActionTypes.PostBack, "我只是想打招呼", value: "Hi")
 
                 }
 
@@ -302,6 +311,80 @@ namespace Single2Double
             }
 
             return null;
+        }
+        private static async Task InvokeRequestResponseService(Activity reply)
+        {
+            using (var client = new HttpClient())
+            {
+                var scoreRequest = new
+                {
+                    Inputs = new Dictionary<string, StringTable>() {
+                        {
+                            "input1",
+                            new StringTable()
+                            {
+                                ColumnNames = new string[] {"gender", "dec_o", "age", "go_out", "sports", "tvsports", "exercise", "dining", "museums", "art", "hiking", "gaming", "clubbing", "reading", "tv", "theater", "movies", "concerts", "music", "shopping", "yoga", "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1", "shar1_1"},
+                                Values = new string[,] {  { "Female", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },  { "Female", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },  }
+                            }
+                        },
+                    },
+                    GlobalParameters = new Dictionary<string, string>()
+                    {
+                    }
+                };
+                const string apiKey = "czD5H2ubumwhorFcBHRaTCBmAniN65q6llAAxYJA2ERXT/Z9rEW1wfQy5hp2dLOh+KBG2RRq4LPeEYpIZ0Cang=="; // Replace this with the API key for the web service
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+
+                client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/8438100c4a1042d8a0d4fc3e67721cbe/services/44a57a39f0774185b77b65d8f2c00998/execute?api-version=2.0&details=true");
+
+                // WARNING: The 'await' statement below can result in a deadlock if you are calling this code from the UI thread of an ASP.Net application.
+                // One way to address this would be to call ConfigureAwait(false) so that the execution does not attempt to resume on the original context.
+                // For instance, replace code such as:
+                //      result = await DoSomeTask()
+                // with the following:
+                //      result = await DoSomeTask().ConfigureAwait(false)
+
+                HttpResponseMessage response = await client.PostAsJsonAsync("", scoreRequest);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string Scored;
+                    string result = await response.Content.ReadAsStringAsync();
+                      
+                    var res = JsonConvert.DeserializeObject<resultobject>(result);
+                    Scored = res.Results.output1.value.Values[0][27];
+                    reply.Text = Scored;
+                    
+
+                    
+                    
+                }
+                else
+                {
+                    reply.Text = "幹你娘";
+                    /*Console.WriteLine(string.Format("The request failed with status code: {0}", response.StatusCode));
+
+                    // Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
+                    Console.WriteLine(response.Headers.ToString());
+
+                    string responseContent = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(responseContent);*/
+                }
+            }
+        }
+        public static string getBetween(string strSource, string strStart, string strEnd)
+        {
+            int Start, End;
+            if (strSource.Contains(strStart) && strSource.Contains(strEnd))
+            {
+                Start = strSource.IndexOf(strStart, 0) + strStart.Length;
+                End = strSource.IndexOf(strEnd, Start);
+                return strSource.Substring(Start, End - Start);
+            }
+            else
+            {
+                return "";
+            }
         }
 
     }
