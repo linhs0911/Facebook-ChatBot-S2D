@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -59,6 +60,7 @@ namespace Single2Double
                 {
                     //User傳送一張照片
                     ImageTemplate(reply, activity.Attachments.First().ContentUrl);
+                    reply.Text = "" + activity.Attachments.First().ContentUrl;
                 }
                 else if (activity.Text.ToString() == "請上傳一張照片")
                 {
@@ -608,10 +610,8 @@ namespace Single2Double
                 {
                     reply.Text = "幹你娘";
                     /*Console.WriteLine(string.Format("The request failed with status code: {0}", response.StatusCode));
-
                     // Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
                     Console.WriteLine(response.Headers.ToString());
-
                     string responseContent = await response.Content.ReadAsStringAsync();
                     Console.WriteLine(responseContent);*/
                 }
