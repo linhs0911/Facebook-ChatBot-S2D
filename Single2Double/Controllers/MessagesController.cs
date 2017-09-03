@@ -1,5 +1,4 @@
-﻿
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -60,7 +59,6 @@ namespace Single2Double
                 {
                     //User傳送一張照片
                     ImageTemplate(reply, activity.Attachments.First().ContentUrl);
-                    reply.Text = "" + activity.Attachments.First().ContentUrl;
                 }
                 else if (activity.Text.ToString() == "請上傳一張照片")
                 {
@@ -69,60 +67,62 @@ namespace Single2Double
                 else if (activity.Text.ToString() == "測試異性對我的喜好")
                 {
                     CreateButtonOne(reply);
-                    inputValues[0, 0] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 0] = activity.Text.ToString().Split('>')[0]; ;
-                    //await InvokeRequestResponseService(reply);
+                    //await InvokeRequestResponseService(reply, inputValues);
                 }
                 else if (activity.Text.ToString() == "Female>1" || activity.Text.ToString() == "Male>1")
                 {
+                    inputValues[0, 0] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 0] = activity.Text.ToString().Split('>')[0]; ;
+                    //reply.Text = inputValues[0, 0];
                     CreateButtonTwo(reply);
-                    inputValues[0, 3] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 3] = activity.Text.ToString().Split('>')[0];
                 }
                 else if (activity.Text.ToString() == "1>2" || activity.Text.ToString() == "2>2" || activity.Text.ToString() == "3>2" || activity.Text.ToString() == "4>2" || activity.Text.ToString() == "5>2" || activity.Text.ToString() == "6>2" || activity.Text.ToString() == "7>2")
                 {
+                    //reply.Text = inputValues[0, 0];
+                    inputValues[0, 3] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 3] = activity.Text.ToString().Split('>')[0];
                     CreateButtonThree(reply);
-                    inputValues[0, 4] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 4] = activity.Text.ToString().Split('>')[0];
                 }
                 else if (activity.Text.ToString() == "1>3" || activity.Text.ToString() == "2>3" || activity.Text.ToString() == "3>3" || activity.Text.ToString() == "4>3" || activity.Text.ToString() == "5>3" || activity.Text.ToString() == "6>3" || activity.Text.ToString() == "7>3" || activity.Text.ToString() == "8>3" || activity.Text.ToString() == "9>3" || activity.Text.ToString() == "10>3")
                 {
+                    inputValues[0, 4] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 4] = activity.Text.ToString().Split('>')[0];
                     CreateButtonFour(reply);
-                    inputValues[0, 5] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 5] = activity.Text.ToString().Split('>')[0];
                 }
                 else if (activity.Text.ToString() == "1>4" || activity.Text.ToString() == "2>4" || activity.Text.ToString() == "3>4" || activity.Text.ToString() == "4>4" || activity.Text.ToString() == "5>4" || activity.Text.ToString() == "6>4" || activity.Text.ToString() == "7>4" || activity.Text.ToString() == "8>4" || activity.Text.ToString() == "9>4" || activity.Text.ToString() == "10>4")
                 {
+                    inputValues[0, 5] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 5] = activity.Text.ToString().Split('>')[0];
                     CreateButtonFive(reply);
-                    inputValues[0, 6] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 6] = activity.Text.ToString().Split('>')[0];
                 }
                 else if (activity.Text.ToString() == "1>5" || activity.Text.ToString() == "2>5" || activity.Text.ToString() == "3>5" || activity.Text.ToString() == "4>5" || activity.Text.ToString() == "5>5" || activity.Text.ToString() == "6>5" || activity.Text.ToString() == "7>5" || activity.Text.ToString() == "8>5" || activity.Text.ToString() == "9>5" || activity.Text.ToString() == "10>5")
                 {
+                    inputValues[0, 6] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 6] = activity.Text.ToString().Split('>')[0];
                     CreateButtonSix(reply);
-                    inputValues[0, 7] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 7] = activity.Text.ToString().Split('>')[0];
                 }
                 else if (activity.Text.ToString() == "1>6" || activity.Text.ToString() == "2>6" || activity.Text.ToString() == "3>6" || activity.Text.ToString() == "4>6" || activity.Text.ToString() == "5>6" || activity.Text.ToString() == "6>6" || activity.Text.ToString() == "7>6" || activity.Text.ToString() == "8>6" || activity.Text.ToString() == "9>6" || activity.Text.ToString() == "10>6")
                 {
+                    inputValues[0, 7] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 7] = activity.Text.ToString().Split('>')[0];
                     CreateButtonSeven(reply);
-                    inputValues[0, 8] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 8] = activity.Text.ToString().Split('>')[0];
                 }
                 else if (activity.Text.ToString() == "1>7" || activity.Text.ToString() == "2>7" || activity.Text.ToString() == "3>7" || activity.Text.ToString() == "4>7" || activity.Text.ToString() == "5>7" || activity.Text.ToString() == "6>7" || activity.Text.ToString() == "7>7" || activity.Text.ToString() == "8>7" || activity.Text.ToString() == "9>7" || activity.Text.ToString() == "10>7")
                 {
+                    inputValues[0, 8] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 8] = activity.Text.ToString().Split('>')[0];
                     CreateButtonEight(reply);
-                    inputValues[0, 9] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 9] = activity.Text.ToString().Split('>')[0];
                 }
                 else if (activity.Text.ToString() == "1>8" || activity.Text.ToString() == "2>8" || activity.Text.ToString() == "3>8" || activity.Text.ToString() == "4>8" || activity.Text.ToString() == "5>8" || activity.Text.ToString() == "6>8" || activity.Text.ToString() == "7>8" || activity.Text.ToString() == "8>8" || activity.Text.ToString() == "9>8" || activity.Text.ToString() == "10>8")
                 {
+                    inputValues[0, 9] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 9] = activity.Text.ToString().Split('>')[0];
                     CreateButtonNine(reply);
-                    inputValues[0, 10] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 10] = activity.Text.ToString().Split('>')[0];
                 }
                 else if (activity.Text.ToString() == "1>9" || activity.Text.ToString() == "2>9" || activity.Text.ToString() == "3>9" || activity.Text.ToString() == "4>9" || activity.Text.ToString() == "5>9" || activity.Text.ToString() == "6>9" || activity.Text.ToString() == "7>9" || activity.Text.ToString() == "8>9" || activity.Text.ToString() == "9>9" || activity.Text.ToString() == "10>9")
                 {
+                    inputValues[0, 10] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 10] = activity.Text.ToString().Split('>')[0];
                     // reply.Text = inputValues[0, 10];
                     reply.Text = "55555";
                     //await InvokeRequestResponseService(reply, inputValues);
@@ -610,8 +610,10 @@ namespace Single2Double
                 {
                     reply.Text = "幹你娘";
                     /*Console.WriteLine(string.Format("The request failed with status code: {0}", response.StatusCode));
+
                     // Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
                     Console.WriteLine(response.Headers.ToString());
+
                     string responseContent = await response.Content.ReadAsStringAsync();
                     Console.WriteLine(responseContent);*/
                 }
