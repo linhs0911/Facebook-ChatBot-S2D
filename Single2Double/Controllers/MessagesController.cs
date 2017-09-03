@@ -1,5 +1,4 @@
-﻿
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -17,7 +16,6 @@ using Microsoft.ProjectOxford.Face;
 using Newtonsoft.Json.Linq;
 using System.Data.SqlClient;
 
-
 namespace Single2Double
 {
     public class StringTable
@@ -25,19 +23,22 @@ namespace Single2Double
         public string[] ColumnNames { get; set; }
         public string[,] Values { get; set; }
     }
+
     [BotAuthentication]
     public class MessagesController : ApiController
     {
         // string urid;
-        string faceid;
-        float Confidence_s;
-        float Confidence_ns;
+        private string faceid;
+
+        private float Confidence_s;
+        private float Confidence_ns;
+
+        public string[,] inputValues = new string[2, 11];
 
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
-
 
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
@@ -47,8 +48,6 @@ namespace Single2Double
             cb.UserID = "yezifa2005";
             cb.Password = "E.860527e";
             cb.InitialCatalog = "S2D";
-
-
 
             Activity reply = activity.CreateReply();
             if (activity.Type == ActivityTypes.Message)
@@ -60,7 +59,6 @@ namespace Single2Double
                 {
                     //User傳送一張照片
                     ImageTemplate(reply, activity.Attachments.First().ContentUrl);
-
                 }
                 else if (activity.Text.ToString() == "請上傳一張照片")
                 {
@@ -68,7 +66,64 @@ namespace Single2Double
                 }
                 else if (activity.Text.ToString() == "測試異性對我的喜好")
                 {
-                    await InvokeRequestResponseService(reply);
+                    CreateButtonOne(reply);
+                    inputValues[0, 0] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 0] = activity.Text.ToString().Split('>')[0]; ;
+                    //await InvokeRequestResponseService(reply);
+                }
+                else if (activity.Text.ToString() == "Female>1" || activity.Text.ToString() == "Male>1")
+                {
+                    CreateButtonTwo(reply);
+                    inputValues[0, 3] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 3] = activity.Text.ToString().Split('>')[0];
+                }
+                else if (activity.Text.ToString() == "1>2" || activity.Text.ToString() == "2>2" || activity.Text.ToString() == "3>2" || activity.Text.ToString() == "4>2" || activity.Text.ToString() == "5>2" || activity.Text.ToString() == "6>2" || activity.Text.ToString() == "7>2")
+                {
+                    CreateButtonThree(reply);
+                    inputValues[0, 4] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 4] = activity.Text.ToString().Split('>')[0];
+                }
+                else if (activity.Text.ToString() == "1>3" || activity.Text.ToString() == "2>3" || activity.Text.ToString() == "3>3" || activity.Text.ToString() == "4>3" || activity.Text.ToString() == "5>3" || activity.Text.ToString() == "6>3" || activity.Text.ToString() == "7>3" || activity.Text.ToString() == "8>3" || activity.Text.ToString() == "9>3" || activity.Text.ToString() == "10>3")
+                {
+                    CreateButtonFour(reply);
+                    inputValues[0, 5] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 5] = activity.Text.ToString().Split('>')[0];
+                }
+                else if (activity.Text.ToString() == "1>4" || activity.Text.ToString() == "2>4" || activity.Text.ToString() == "3>4" || activity.Text.ToString() == "4>4" || activity.Text.ToString() == "5>4" || activity.Text.ToString() == "6>4" || activity.Text.ToString() == "7>4" || activity.Text.ToString() == "8>4" || activity.Text.ToString() == "9>4" || activity.Text.ToString() == "10>4")
+                {
+                    CreateButtonFive(reply);
+                    inputValues[0, 6] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 6] = activity.Text.ToString().Split('>')[0];
+                }
+                else if (activity.Text.ToString() == "1>5" || activity.Text.ToString() == "2>5" || activity.Text.ToString() == "3>5" || activity.Text.ToString() == "4>5" || activity.Text.ToString() == "5>5" || activity.Text.ToString() == "6>5" || activity.Text.ToString() == "7>5" || activity.Text.ToString() == "8>5" || activity.Text.ToString() == "9>5" || activity.Text.ToString() == "10>5")
+                {
+                    CreateButtonSix(reply);
+                    inputValues[0, 7] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 7] = activity.Text.ToString().Split('>')[0];
+                }
+                else if (activity.Text.ToString() == "1>6" || activity.Text.ToString() == "2>6" || activity.Text.ToString() == "3>6" || activity.Text.ToString() == "4>6" || activity.Text.ToString() == "5>6" || activity.Text.ToString() == "6>6" || activity.Text.ToString() == "7>6" || activity.Text.ToString() == "8>6" || activity.Text.ToString() == "9>6" || activity.Text.ToString() == "10>6")
+                {
+                    CreateButtonSeven(reply);
+                    inputValues[0, 8] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 8] = activity.Text.ToString().Split('>')[0];
+                }
+                else if (activity.Text.ToString() == "1>7" || activity.Text.ToString() == "2>7" || activity.Text.ToString() == "3>7" || activity.Text.ToString() == "4>7" || activity.Text.ToString() == "5>7" || activity.Text.ToString() == "6>7" || activity.Text.ToString() == "7>7" || activity.Text.ToString() == "8>7" || activity.Text.ToString() == "9>7" || activity.Text.ToString() == "10>7")
+                {
+                    CreateButtonEight(reply);
+                    inputValues[0, 9] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 9] = activity.Text.ToString().Split('>')[0];
+                }
+                else if (activity.Text.ToString() == "1>8" || activity.Text.ToString() == "2>8" || activity.Text.ToString() == "3>8" || activity.Text.ToString() == "4>8" || activity.Text.ToString() == "5>8" || activity.Text.ToString() == "6>8" || activity.Text.ToString() == "7>8" || activity.Text.ToString() == "8>8" || activity.Text.ToString() == "9>8" || activity.Text.ToString() == "10>8")
+                {
+                    CreateButtonNine(reply);
+                    inputValues[0, 10] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 10] = activity.Text.ToString().Split('>')[0];
+                }
+                else if (activity.Text.ToString() == "1>9" || activity.Text.ToString() == "2>9" || activity.Text.ToString() == "3>9" || activity.Text.ToString() == "4>9" || activity.Text.ToString() == "5>9" || activity.Text.ToString() == "6>9" || activity.Text.ToString() == "7>9" || activity.Text.ToString() == "8>9" || activity.Text.ToString() == "9>9" || activity.Text.ToString() == "10>9")
+                {
+                    // reply.Text = inputValues[0, 10];
+                    reply.Text = "55555";
+                    //await InvokeRequestResponseService(reply, inputValues);
                 }
                 else if (activity.Text == "我好飢渴")
                 {
@@ -80,7 +135,7 @@ namespace Single2Double
                         {   //隨機選擇照片
                             Random rnd = new Random();
                             //目前資料庫的照片張數
-                            int rd = rnd.Next(1, 10);
+                            int rd = rnd.Next(1, 15);
                             //建立資料庫連線
                             connection.Open();
                             //撰寫query
@@ -93,8 +148,6 @@ namespace Single2Double
                             {
                                 url = (string)cmd.ExecuteScalar();
                             }
-
-
                         }
                     }
                     catch (SqlException e)
@@ -103,15 +156,12 @@ namespace Single2Double
                         await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
-
-
                     Attachment att = new Attachment();
                     att.ContentType = "image/png";
                     att.ContentUrl = url;
                     reply.Text = "請慢慢享用^^";
 
                     reply.Attachments.Add(att);
-
                 }
                 else
                 {
@@ -159,38 +209,28 @@ namespace Single2Double
                                 }
                                 if (Confidence_s < 0)
                                 {
-
                                     reply.Text = "這個人應該不是是單身";
                                     await connector.Conversations.ReplyToActivityAsync(reply);
                                 }
-
                             }
                             // Console.WriteLine("Hit ENTER to exit...");
                             // Console.ReadLine();
-
                         }
-
                     }
-
-
                 }
 
                 await connector.Conversations.ReplyToActivityAsync(reply);
-
             }
-
             else
             {
                 // HandleSystemMessage(activity);
-
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
 
-
         //verify
-        static async void MakeRequest(string body, Activity activity, string status, float Confidence)
+        private static async void MakeRequest(string body, Activity activity, string status, float Confidence)
         {
             var client = new HttpClient();
             var queryString = HttpUtility.ParseQueryString(string.Empty);
@@ -223,19 +263,16 @@ namespace Single2Double
                 datareply.Text = $"他跟{status}的人的長相有 {Confidence} 的相似度";
                 await connector.Conversations.ReplyToActivityAsync(datareply);
             }
-
         }
 
         private void ImageTemplate(Activity reply, string url)
 
         {
-
             List<Attachment> att = new List<Attachment>();
 
             att.Add(new HeroCard()
 
             {
-
                 Title = "Cognitive services",
 
                 Subtitle = "Select from below",
@@ -245,43 +282,252 @@ namespace Single2Double
                 Buttons = new List<CardAction>()
 
                 {
-
                     //new CardAction(ActionTypes.PostBack, "男女生", value: $"Face>{url}"),
 
                     new CardAction(ActionTypes.PostBack, "確認感情狀態", value: $"Analyze>{url}")
-
                 }
-
             }.ToAttachment());
 
-
-
             reply.Attachments = att;
-
         }
-        private void CreateButton(Activity reply)
+
+        private void CreateButtonOne(Activity reply)
         {
             List<Attachment> att = new List<Attachment>();
 
             att.Add(new HeroCard()
 
             {
-                Title = "主人早安~我口以腫摩幫你呢?<3",
+                Title = "What is your gender?",
                 Buttons = new List<CardAction>()
 
                 {
-
-                    new CardAction(ActionTypes.PostBack, "我好飢渴", value: "Hunger"),
-                    new CardAction(ActionTypes.PostBack, "我只是想打招呼", value: "Hi")
-
+                    new CardAction(ActionTypes.PostBack, "Male", value: "Male>1"),
+                    new CardAction(ActionTypes.PostBack, "Female", value: "Female>1"),
                 }
-
             }.ToAttachment());
 
+            reply.Attachments = att;
+        }
 
+        private void CreateButtonTwo(Activity reply)
+        {
+            List<Attachment> att = new List<Attachment>();
+
+            att.Add(new HeroCard()
+
+            {
+                Title = "How often do you go out?",
+                Buttons = new List<CardAction>()
+
+                {
+                    new CardAction(ActionTypes.PostBack, "Many times / week", value: "1>2"),
+                    new CardAction(ActionTypes.PostBack, "Twice / week", value: "2>2"),
+                    new CardAction(ActionTypes.PostBack, "Once / week", value: "3>2"),
+                    new CardAction(ActionTypes.PostBack, "Twice / month", value: "4>2"),
+                    new CardAction(ActionTypes.PostBack, "Once / month", value: "5>2"),
+                    new CardAction(ActionTypes.PostBack, "Many times / year", value: "6>2"),
+                    new CardAction(ActionTypes.PostBack, "Almost never", value: "7>2"),
+                }
+            }.ToAttachment());
 
             reply.Attachments = att;
+        }
 
+        private void CreateButtonThree(Activity reply)
+        {
+            List<Attachment> att = new List<Attachment>();
+
+            att.Add(new HeroCard()
+
+            {
+                Title = "How interested are you in Playing Sports?",
+                Subtitle = "(1=not at all, 10 = highly)",
+                Buttons = new List<CardAction>()
+
+                {
+                    new CardAction(ActionTypes.PostBack, "1", value: "1>3"),
+                    new CardAction(ActionTypes.PostBack, "2", value: "2>3"),
+                    new CardAction(ActionTypes.PostBack, "3", value: "3>3"),
+                    new CardAction(ActionTypes.PostBack, "4", value: "4>3"),
+                    new CardAction(ActionTypes.PostBack, "5", value: "5>3"),
+                    new CardAction(ActionTypes.PostBack, "6", value: "6>3"),
+                    new CardAction(ActionTypes.PostBack, "7", value: "7>3"),
+                    new CardAction(ActionTypes.PostBack, "8", value: "8>3"),
+                    new CardAction(ActionTypes.PostBack, "9", value: "9>3"),
+                    new CardAction(ActionTypes.PostBack, "10", value: "10>3"),
+                }
+            }.ToAttachment());
+
+            reply.Attachments = att;
+        }
+
+        private void CreateButtonFour(Activity reply)
+        {
+            List<Attachment> att = new List<Attachment>();
+
+            att.Add(new HeroCard()
+
+            {
+                Title = "How interested are you in Watching Sports?",
+                Subtitle = "(1=not at all, 10 = highly)",
+                Buttons = new List<CardAction>()
+
+                {
+                    new CardAction(ActionTypes.PostBack, "1", value: "1>4"),
+                    new CardAction(ActionTypes.PostBack, "2", value: "2>4"),
+                    new CardAction(ActionTypes.PostBack, "3", value: "3>4"),
+                    new CardAction(ActionTypes.PostBack, "4", value: "4>4"),
+                    new CardAction(ActionTypes.PostBack, "5", value: "5>4"),
+                    new CardAction(ActionTypes.PostBack, "6", value: "6>4"),
+                    new CardAction(ActionTypes.PostBack, "7", value: "7>4"),
+                    new CardAction(ActionTypes.PostBack, "8", value: "8>4"),
+                    new CardAction(ActionTypes.PostBack, "9", value: "9>4"),
+                    new CardAction(ActionTypes.PostBack, "10", value: "10>4"),
+                }
+            }.ToAttachment());
+
+            reply.Attachments = att;
+        }
+
+        private void CreateButtonFive(Activity reply)
+        {
+            List<Attachment> att = new List<Attachment>();
+
+            att.Add(new HeroCard()
+
+            {
+                Title = "How interested are you in Hiking/Camping?",
+                Subtitle = "(1=not at all, 10 = highly)",
+                Buttons = new List<CardAction>()
+
+                {
+                    new CardAction(ActionTypes.PostBack, "1", value: "1>5"),
+                    new CardAction(ActionTypes.PostBack, "2", value: "2>5"),
+                    new CardAction(ActionTypes.PostBack, "3", value: "3>5"),
+                    new CardAction(ActionTypes.PostBack, "4", value: "4>5"),
+                    new CardAction(ActionTypes.PostBack, "5", value: "5>5"),
+                    new CardAction(ActionTypes.PostBack, "6", value: "6>5"),
+                    new CardAction(ActionTypes.PostBack, "7", value: "7>5"),
+                    new CardAction(ActionTypes.PostBack, "8", value: "8>5"),
+                    new CardAction(ActionTypes.PostBack, "9", value: "9>5"),
+                    new CardAction(ActionTypes.PostBack, "10", value: "10>5"),
+                }
+            }.ToAttachment());
+
+            reply.Attachments = att;
+        }
+
+        private void CreateButtonSix(Activity reply)
+        {
+            List<Attachment> att = new List<Attachment>();
+
+            att.Add(new HeroCard()
+
+            {
+                Title = "How interested are you in Gaming?)",
+                Subtitle = "(1=not at all, 10 = highly)",
+                Buttons = new List<CardAction>()
+
+                {
+                    new CardAction(ActionTypes.PostBack, "1", value: "1>6"),
+                    new CardAction(ActionTypes.PostBack, "2", value: "2>6"),
+                    new CardAction(ActionTypes.PostBack, "3", value: "3>6"),
+                    new CardAction(ActionTypes.PostBack, "4", value: "4>6"),
+                    new CardAction(ActionTypes.PostBack, "5", value: "5>6"),
+                    new CardAction(ActionTypes.PostBack, "6", value: "6>6"),
+                    new CardAction(ActionTypes.PostBack, "7", value: "7>6"),
+                    new CardAction(ActionTypes.PostBack, "8", value: "8>6"),
+                    new CardAction(ActionTypes.PostBack, "9", value: "9>6"),
+                    new CardAction(ActionTypes.PostBack, "10", value: "10>6"),
+                }
+            }.ToAttachment());
+
+            reply.Attachments = att;
+        }
+
+        private void CreateButtonSeven(Activity reply)
+        {
+            List<Attachment> att = new List<Attachment>();
+
+            att.Add(new HeroCard()
+
+            {
+                Title = "How interested are you in Watching TV?",
+                Subtitle = "(1=not at all, 10 = highly)",
+                Buttons = new List<CardAction>()
+
+                {
+                    new CardAction(ActionTypes.PostBack, "1", value: "1>7"),
+                    new CardAction(ActionTypes.PostBack, "2", value: "2>7"),
+                    new CardAction(ActionTypes.PostBack, "3", value: "3>7"),
+                    new CardAction(ActionTypes.PostBack, "4", value: "4>7"),
+                    new CardAction(ActionTypes.PostBack, "5", value: "5>7"),
+                    new CardAction(ActionTypes.PostBack, "6", value: "6>7"),
+                    new CardAction(ActionTypes.PostBack, "7", value: "7>7"),
+                    new CardAction(ActionTypes.PostBack, "8", value: "8>7"),
+                    new CardAction(ActionTypes.PostBack, "9", value: "9>7"),
+                    new CardAction(ActionTypes.PostBack, "10", value: "10>7"),
+                }
+            }.ToAttachment());
+
+            reply.Attachments = att;
+        }
+
+        private void CreateButtonEight(Activity reply)
+        {
+            List<Attachment> att = new List<Attachment>();
+
+            att.Add(new HeroCard()
+
+            {
+                Title = "How interested are you in Shopping?",
+                Subtitle = "(1=not at all, 10 = highly)",
+                Buttons = new List<CardAction>()
+
+                {
+                    new CardAction(ActionTypes.PostBack, "1", value: "1>8"),
+                    new CardAction(ActionTypes.PostBack, "2", value: "2>8"),
+                    new CardAction(ActionTypes.PostBack, "3", value: "3>8"),
+                    new CardAction(ActionTypes.PostBack, "4", value: "4>8"),
+                    new CardAction(ActionTypes.PostBack, "5", value: "5>8"),
+                    new CardAction(ActionTypes.PostBack, "6", value: "6>8"),
+                    new CardAction(ActionTypes.PostBack, "7", value: "7>8"),
+                    new CardAction(ActionTypes.PostBack, "8", value: "8>8"),
+                    new CardAction(ActionTypes.PostBack, "9", value: "9>8"),
+                    new CardAction(ActionTypes.PostBack, "10", value: "10>8"),
+                }
+            }.ToAttachment());
+
+            reply.Attachments = att;
+        }
+
+        private void CreateButtonNine(Activity reply)
+        {
+            List<Attachment> att = new List<Attachment>();
+
+            att.Add(new HeroCard()
+
+            {
+                Title = "How interested are you in Yoga/Meditation?",
+                Subtitle = "(1=not at all, 10 = highly)",
+                Buttons = new List<CardAction>()
+
+                {
+                    new CardAction(ActionTypes.PostBack, "1", value: "1>9"),
+                    new CardAction(ActionTypes.PostBack, "2", value: "2>9"),
+                    new CardAction(ActionTypes.PostBack, "3", value: "3>9"),
+                    new CardAction(ActionTypes.PostBack, "4", value: "4>9"),
+                    new CardAction(ActionTypes.PostBack, "5", value: "5>9"),
+                    new CardAction(ActionTypes.PostBack, "6", value: "6>9"),
+                    new CardAction(ActionTypes.PostBack, "7", value: "7>9"),
+                    new CardAction(ActionTypes.PostBack, "8", value: "8>9"),
+                    new CardAction(ActionTypes.PostBack, "9", value: "9>9"),
+                    new CardAction(ActionTypes.PostBack, "10", value: "10>9"),
+                }
+            }.ToAttachment());
+
+            reply.Attachments = att;
         }
 
         private Activity HandleSystemMessage(Activity message)
@@ -312,7 +558,8 @@ namespace Single2Double
 
             return null;
         }
-        private static async Task InvokeRequestResponseService(Activity reply)
+
+        private static async Task InvokeRequestResponseService(Activity reply, string[,] value)
         {
             using (var client = new HttpClient())
             {
@@ -323,19 +570,21 @@ namespace Single2Double
                             "input1",
                             new StringTable()
                             {
-                                ColumnNames = new string[] {"gender", "dec_o", "age", "go_out", "sports", "tvsports", "exercise", "dining", "museums", "art", "hiking", "gaming", "clubbing", "reading", "tv", "theater", "movies", "concerts", "music", "shopping", "yoga", "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1", "shar1_1"},
-                                Values = new string[,] {  { "Female", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },  { "Female", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },  }
-                            }
+                                ColumnNames = new string[] {"gender", "dec_o", "age", "go_out", "sports", "tvsports", "hiking", "gaming", "tv", "shopping", "yoga"},
+                                Values = new string[,] { { value[0, 0], value[0, 1], value[0, 2], value[0, 3], value[0, 4], value[0, 5], value[0, 6], value[0, 7], value[0, 8], value[0, 9], value[0, 10] },
+                                                                    { value[1, 0], value[1, 1], value[1, 2], value[1, 3], value[1, 4], value[1, 5], value[1, 6], value[1, 7], value[1, 8], value[1, 9], value[1, 10] }, }
+                             }
                         },
                     },
                     GlobalParameters = new Dictionary<string, string>()
                     {
                     }
                 };
-                const string apiKey = "czD5H2ubumwhorFcBHRaTCBmAniN65q6llAAxYJA2ERXT/Z9rEW1wfQy5hp2dLOh+KBG2RRq4LPeEYpIZ0Cang=="; // Replace this with the API key for the web service
+
+                const string apiKey = "8SM/8J2nOEAHLQ701i4uaR/XMa7RNIzfddElQ8ACBhVhnT6BU0LWf2NY2hDVUe/NQGsNxLNHhSfPQdsQrUzuhw=="; // Replace this with the API key for the web service
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
-                client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/8438100c4a1042d8a0d4fc3e67721cbe/services/44a57a39f0774185b77b65d8f2c00998/execute?api-version=2.0&details=true");
+                client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/8438100c4a1042d8a0d4fc3e67721cbe/services/adc3ea3d48f849b4b2d3592286bd05f7/execute?api-version=2.0&details=true");
 
                 // WARNING: The 'await' statement below can result in a deadlock if you are calling this code from the UI thread of an ASP.Net application.
                 // One way to address this would be to call ConfigureAwait(false) so that the execution does not attempt to resume on the original context.
@@ -350,14 +599,10 @@ namespace Single2Double
                 {
                     string Scored;
                     string result = await response.Content.ReadAsStringAsync();
-                      
-                    var res = JsonConvert.DeserializeObject<resultobject>(result);
-                    Scored = res.Results.output1.value.Values[0][27];
-                    reply.Text = Scored;
-                    
 
-                    
-                    
+                    var res = JsonConvert.DeserializeObject<resultobject>(result);
+                    Scored = res.Results.output1.value.Values[0][11];
+                    reply.Text = Scored;
                 }
                 else
                 {
@@ -372,6 +617,7 @@ namespace Single2Double
                 }
             }
         }
+
         public static string getBetween(string strSource, string strStart, string strEnd)
         {
             int Start, End;
@@ -386,7 +632,5 @@ namespace Single2Double
                 return "";
             }
         }
-
     }
-
 }
