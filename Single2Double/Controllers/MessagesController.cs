@@ -93,13 +93,11 @@ namespace Single2Double
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
                         }
-
-                        //reply.Text = inputValues[0, 0];
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "您已回答過此問題";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
                     //show botton
                     CreateButtonTwo(reply);
@@ -126,13 +124,11 @@ namespace Single2Double
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
                         }
-
-                        //reply.Text = inputValues[0, 0];
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "您已回答過此問題";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     // show botton
@@ -161,13 +157,11 @@ namespace Single2Double
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
                         }
-
-                        //reply.Text = inputValues[0, 0];
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "您已回答過此問題";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     // show botton
@@ -196,13 +190,11 @@ namespace Single2Double
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
                         }
-
-                        //reply.Text = inputValues[0, 0];
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "您已回答過此問題";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     // show botton
@@ -231,13 +223,11 @@ namespace Single2Double
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
                         }
-
-                        //reply.Text = inputValues[0, 0];
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "您已回答過此問題";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     // show botton
@@ -266,13 +256,11 @@ namespace Single2Double
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
                         }
-
-                        //reply.Text = inputValues[0, 0];
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "您已回答過此問題";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     // show botton
@@ -301,13 +289,11 @@ namespace Single2Double
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
                         }
-
-                        //reply.Text = inputValues[0, 0];
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "您已回答過此問題";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     // show botton
@@ -336,13 +322,11 @@ namespace Single2Double
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
                         }
-
-                        //reply.Text = inputValues[0, 0];
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "您已回答過此問題";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     // show botton
@@ -371,16 +355,12 @@ namespace Single2Double
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
                         }
-
-                        //reply.Text = inputValues[0, 0];
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "您已回答過此問題";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
-
-                    //reply.Text = "55555";
 
                     // call data from database
                     try
@@ -391,7 +371,7 @@ namespace Single2Double
                             connection.Open();
                             //撰寫query
                             StringBuilder sb1 = new StringBuilder();
-                            sb1.Append("SELECT [answer] ");
+                            sb1.Append("SELECT [message] ");
                             sb1.Append("FROM [dbo].[Message]");
                             sb1.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "1");
                             String sql = sb1.ToString();
@@ -403,8 +383,8 @@ namespace Single2Double
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "error with input1";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     try
@@ -415,7 +395,7 @@ namespace Single2Double
                             connection.Open();
                             //撰寫query
                             StringBuilder sb2 = new StringBuilder();
-                            sb2.Append("SELECT [answer] ");
+                            sb2.Append("SELECT [message] ");
                             sb2.Append("FROM [dbo].[Message]");
                             sb2.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "2");
                             String sql = sb2.ToString();
@@ -427,8 +407,8 @@ namespace Single2Double
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "error with input2";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     try
@@ -439,7 +419,7 @@ namespace Single2Double
                             connection.Open();
                             //撰寫query
                             StringBuilder sb3 = new StringBuilder();
-                            sb3.Append("SELECT [answer] ");
+                            sb3.Append("SELECT [message] ");
                             sb3.Append("FROM [dbo].[Message]");
                             sb3.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "3");
                             String sql = sb3.ToString();
@@ -451,8 +431,8 @@ namespace Single2Double
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "error with input3";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     try
@@ -463,7 +443,7 @@ namespace Single2Double
                             connection.Open();
                             //撰寫query
                             StringBuilder sb4 = new StringBuilder();
-                            sb4.Append("SELECT [answer] ");
+                            sb4.Append("SELECT [message] ");
                             sb4.Append("FROM [dbo].[Message]");
                             sb4.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "4");
                             String sql = sb4.ToString();
@@ -475,8 +455,8 @@ namespace Single2Double
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "error with input4";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     try
@@ -487,7 +467,7 @@ namespace Single2Double
                             connection.Open();
                             //撰寫query
                             StringBuilder sb5 = new StringBuilder();
-                            sb5.Append("SELECT [answer] ");
+                            sb5.Append("SELECT [message] ");
                             sb5.Append("FROM [dbo].[Message]");
                             sb5.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "5");
                             String sql = sb5.ToString();
@@ -499,8 +479,8 @@ namespace Single2Double
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "error with input5";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     try
@@ -511,7 +491,7 @@ namespace Single2Double
                             connection.Open();
                             //撰寫query
                             StringBuilder sb6 = new StringBuilder();
-                            sb6.Append("SELECT [answer] ");
+                            sb6.Append("SELECT [message] ");
                             sb6.Append("FROM [dbo].[Message]");
                             sb6.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "6");
                             String sql = sb6.ToString();
@@ -523,8 +503,8 @@ namespace Single2Double
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "error with input6";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     try
@@ -535,7 +515,7 @@ namespace Single2Double
                             connection.Open();
                             //撰寫query
                             StringBuilder sb7 = new StringBuilder();
-                            sb7.Append("SELECT [answer] ");
+                            sb7.Append("SELECT [message] ");
                             sb7.Append("FROM [dbo].[Message]");
                             sb7.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "7");
                             String sql = sb7.ToString();
@@ -547,8 +527,8 @@ namespace Single2Double
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "error with input7";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     try
@@ -559,7 +539,7 @@ namespace Single2Double
                             connection.Open();
                             //撰寫query
                             StringBuilder sb8 = new StringBuilder();
-                            sb8.Append("SELECT [answer] ");
+                            sb8.Append("SELECT [message] ");
                             sb8.Append("FROM [dbo].[Message]");
                             sb8.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "8");
                             String sql = sb8.ToString();
@@ -571,8 +551,8 @@ namespace Single2Double
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "error with input8";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
                     try
                     {
@@ -582,9 +562,9 @@ namespace Single2Double
                             connection.Open();
                             //撰寫query
                             StringBuilder sb9 = new StringBuilder();
-                            sb9.Append("SELECT [answer] ");
+                            sb9.Append("SELECT [message] ");
                             sb9.Append("FROM [dbo].[Message]");
-                            sb9.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "7");
+                            sb9.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "9");
                             String sql = sb9.ToString();
                             using (var cmd = new SqlCommand(sql, connection))
                             {
@@ -594,11 +574,12 @@ namespace Single2Double
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        reply.Text = "error with input9";
+                        //await connector.Conversations.ReplyToActivityAsync(reply);
                     }
 
                     await InvokeRequestResponseService(reply, input1, "20", input2, input3, input4, input5, input6, input7, input8, input9);
+                    ///reply.Text = input1 + "20" + input2 + input3 + input4 + input5 + input6 + input7 + input8 + input9;
                 }
                 else if (activity.Text == "我好飢渴")
                 {
@@ -653,143 +634,28 @@ namespace Single2Double
                         winer.personId = "383b0c3a-cfc7-4e12-a992-0d7328cee0a0";
                         if (fbData.postback != null && fbData.postback.payload.StartsWith("Analyze"))
                         {
+                            //辨識圖片
                             var url = fbData.postback.payload.Split('>')[1];
+                            //reply.Text = $"{url}";
+                            FaceServiceClient client = new FaceServiceClient("df30d486a01b4ee9bbf913a324795d62", "https://southeastasia.api.cognitive.microsoft.com/face/v1.0");
+                            var faces = await client.DetectAsync(
+                                url,
+                                true,
+                                false
+                                );
 
-                            reply.Text = $"{url}";
-
-                            HttpClient client = new HttpClient();
-                            // Request headers.
-                            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "df30d486a01b4ee9bbf913a324795d62");
-
-                            // Request parameters. A third optional parameter is "details".
-                            string requestParameters = "returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
-
-                            // Assemble the URI for the REST API Call.
-                            string uri = "https://southeastasia.api.cognitive.microsoft.com/face/v1.0/detect" + "?" + requestParameters;
-
-                            HttpResponseMessage newresponse;
-
-                            CreateImageUri createImageUri = new CreateImageUri();
-                            createImageUri.url = url;
-                            byte[] byteData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(createImageUri).ToString());
-
-                            using (ByteArrayContent content = new ByteArrayContent(byteData))
+                            foreach (var face in faces)
                             {
-                                //This example uses content type "application/octet-stream".
-                                // The other content types you can use are "application/json" and "multipart/form-data".
-                                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                                var id = face.FaceId;
 
-                                // Execute the REST API call.
-                                newresponse = await client.PostAsync(uri, content);
-
-
-                                //facedetectJSON facedetectjson = new facedetectJSON();
-                                // Get the JSON response.
-
-                                string contentString = await newresponse.Content.ReadAsStringAsync();
-
-                                var facedetectjson = JsonConvert.DeserializeObject<facedetectJSON[]>(contentString);
-                                string arrtibute;
-                                arrtibute = facedetectjson[0].faceAttributes.smile.ToString();
-                                arrtibute += "," + facedetectjson[0].faceAttributes.headPose.pitch;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.headPose.roll;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.headPose.yaw;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.gender;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.age;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.facialHair.moustache;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.facialHair.beard;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.facialHair.sideburns;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.glasses;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.anger;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.contempt;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.disgust;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.fear;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.happiness;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.neutral;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.sadness;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.surprise;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.blur.blurLevel;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.blur.value;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.exposure.exposureLevel;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.exposure.value;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.noise.noiseLevel;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.noise.value;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.makeup.eyeMakeup;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.makeup.lipMakeup;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.accessories;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.occlusion.foreheadOccluded;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.occlusion.eyeOccluded;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.occlusion.mouthOccluded;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.bald;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.invisible;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[0].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[0].confidence;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[1].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[1].confidence;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[2].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[2].confidence;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[3].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[3].confidence;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[4].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[4].confidence;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[5].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[5].confidence;
-
-                                //string inserttosql = "";
-
-                                try
-                                {
-                                    using (var connection = new SqlConnection(cb.ConnectionString))
-                                    {
-                                        //建立資料庫連線
-                                        connection.Open();
-                                        //撰寫query
-                                        StringBuilder sb = new StringBuilder();
-                                        sb.Append("INSERT INTO [dbo].[Regresion]([id],[url],[attribute])");
-                                        sb.Append(" VALUES ('" + facedetectjson[0].faceId.ToString() + "','" + url + "','" + arrtibute + "')");
-                                        string sql = "INSERT INTO [dbo].[Regression] ([id],[url],[attribute]) VALUES ('" + facedetectjson[0].faceId.ToString() + "','" + url + "','" + arrtibute + "')";
-                                        //reply.Text = sql;
-                                        //await connector.Conversations.ReplyToActivityAsync(reply);
-                                        SqlCommand inserttosql = new SqlCommand(sql, connection);
-                                        inserttosql.ExecuteNonQuery();
-                                        connection.Close();
-                                    }
-                                }
-                                catch (SqlException e)
-                                {
-                                    reply.Text = e.ToString();
-                                    await connector.Conversations.ReplyToActivityAsync(reply);
-                                }
-
-
-                                ttt.faceId = facedetectjson[0].faceId.ToString();
-                                winer.faceId = facedetectjson[0].faceId.ToString();
-
+                                //reply.Text = "HI";
+                                //reply.Text = $"{id}";
+                                ttt.faceId = id.ToString();
+                                winer.faceId = id.ToString();
                                 string body = JsonConvert.SerializeObject(ttt).ToString();
                                 string body2 = JsonConvert.SerializeObject(winer).ToString();
-                                string single_confidence = await MakeRequest(body, activity, "單身", Confidence_s);
-                                string Nonsingle_confidence = await MakeRequest(body2, activity, "不是單身", Confidence_ns);
-                                try
-                                {
-                                    using (var connection = new SqlConnection(cb.ConnectionString))
-                                    {
-                                        //建立資料庫連線
-                                        connection.Open();
-                                        //撰寫query
-                                        string sql = "UPDATE [dbo].[Regression] SET [confidence] = '" + single_confidence + "," + Nonsingle_confidence + "'WHERE id = '" + facedetectjson[0].faceId.ToString() + "'";
-                                        //reply.Text = sql;
-                                        //await connector.Conversations.ReplyToActivityAsync(reply);
-                                        SqlCommand updatetosql = new SqlCommand(sql, connection);
-                                        updatetosql.ExecuteNonQuery();
-                                        connection.Close();
-                                    }
-                                }
-                                catch (SqlException e)
-                                {
-                                    reply.Text = e.ToString();
-                                    await connector.Conversations.ReplyToActivityAsync(reply);
-                                }
-                                reply.Text = "單身" + single_confidence + "非單身" + Nonsingle_confidence;
+                                MakeRequest(body, activity, "單身", Confidence_s);
+                                MakeRequest(body2, activity, "不是單身", Confidence_ns);
                                 // await connector.Conversations.ReplyToActivityAsync(reply);
                                 Confidence_s = Confidence_s - Confidence_ns;
                                 if (Confidence_s > 0)
@@ -802,64 +668,6 @@ namespace Single2Double
                                     reply.Text = "這個人應該不是是單身";
                                     await connector.Conversations.ReplyToActivityAsync(reply);
                                 }
-
-                                ////reply.Text = $"{url}";
-                                //FaceServiceClient client = new FaceServiceClient("df30d486a01b4ee9bbf913a324795d62", "https://southeastasia.api.cognitive.microsoft.com/face/v1.0");
-                                //var faces = await client.DetectAsync(
-                                //    url,
-                                //    true,
-                                //    false
-                                //    );
-
-                                //    foreach (var face in faces)
-                                //{
-                                //    var id = face.FaceId;
-
-                                //    //reply.Text = "HI";
-                                //    //reply.Text = $"{id}";
-                                //    ttt.faceId = id.ToString();
-                                //    winer.faceId = id.ToString();
-
-                                //    string body = JsonConvert.SerializeObject(ttt).ToString();
-                                //    string body2 = JsonConvert.SerializeObject(winer).ToString();
-                                //    string single_confidence = await MakeRequest(body, activity, "單身", Confidence_s);
-                                //    string Nonsingle_confidence =await MakeRequest(body2, activity, "不是單身", Confidence_ns);
-                                //    try
-                                //    {
-                                //        using (var connection = new SqlConnection(cb.ConnectionString))
-                                //        {
-                                //            //建立資料庫連線
-                                //            connection.Open();
-                                //            //撰寫query
-                                //            string sql = "UPDATE [dbo].[Regression] SET [confidence] = '" + single_confidence +"," + Nonsingle_confidence + "'WHERE id = '" + facedetectjson[0].faceId.ToString()+"'";
-                                //            //reply.Text = sql;
-                                //            //await connector.Conversations.ReplyToActivityAsync(reply);
-                                //            SqlCommand updatetosql = new SqlCommand(sql, connection);
-                                //            updatetosql.ExecuteNonQuery();
-                                //            connection.Close();
-                                //        }
-                                //    }
-                                //    catch (SqlException e)
-                                //    {
-                                //        reply.Text = e.ToString();
-                                //        await connector.Conversations.ReplyToActivityAsync(reply);
-                                //    }
-                                //    reply.Text = "單身" + single_confidence + "非單身" + Nonsingle_confidence; 
-                                //    // await connector.Conversations.ReplyToActivityAsync(reply);
-                                //    Confidence_s = Confidence_s - Confidence_ns;
-                                //    if (Confidence_s > 0)
-                                //    {
-                                //        reply.Text = "這個人應該是單身";
-                                //        await connector.Conversations.ReplyToActivityAsync(reply);
-                                //    }
-                                //    if (Confidence_s < 0)
-                                //    {
-                                //        reply.Text = "這個人應該不是是單身";
-                                //        await connector.Conversations.ReplyToActivityAsync(reply);
-                                //    }
-                                //}
-                                // Console.WriteLine("Hit ENTER to exit...");
-                                // Console.ReadLine();
                             }
                             // Console.WriteLine("Hit ENTER to exit...");
                             // Console.ReadLine();
@@ -878,7 +686,7 @@ namespace Single2Double
         }
 
         //verify
-        private static async Task<string> MakeRequest(string body, Activity activity, string status, float Confidence)
+        private static async void MakeRequest(string body, Activity activity, string status, float Confidence)
         {
             var client = new HttpClient();
             var queryString = HttpUtility.ParseQueryString(string.Empty);
@@ -907,7 +715,7 @@ namespace Single2Double
                 datareply.Text = await response.Content.ReadAsStringAsync();
                 JObject rss = JObject.Parse(datareply.Text);
                 Confidence = (float)rss["confidence"];
-                return Confidence.ToString();
+
                 datareply.Text = $"他跟{status}的人的長相有 {Confidence} 的相似度";
                 await connector.Conversations.ReplyToActivityAsync(datareply);
             }
@@ -1245,16 +1053,18 @@ namespace Single2Double
 
                 if (response.IsSuccessStatusCode)
                 {
-                    string Scored;
+                    string Scored, Scored2, Scored3;
                     string result = await response.Content.ReadAsStringAsync();
 
                     var res = JsonConvert.DeserializeObject<resultobject>(result);
                     Scored = res.Results.output1.value.Values[0][11];
-                    reply.Text = Scored;
+                    Scored2 = Scored.Remove(0, 2);
+                    Scored3 = Scored2.Remove(2, Scored2.Length - 2);
+                    reply.Text = "您受異性喜好的程度為" + Scored3 + "%!";
                 }
                 else
                 {
-                    reply.Text = "幹你娘";
+                    reply.Text = "您填的問卷有錯誤";
                     /*Console.WriteLine(string.Format("The request failed with status code: {0}", response.StatusCode));
 
                     // Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
