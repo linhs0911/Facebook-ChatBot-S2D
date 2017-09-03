@@ -71,60 +71,340 @@ namespace Single2Double
                 }
                 else if (activity.Text.ToString() == "Female>1" || activity.Text.ToString() == "Male>1")
                 {
+                    // answer
                     inputValues[0, 0] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 0] = activity.Text.ToString().Split('>')[0]; ;
-                    //reply.Text = inputValues[0, 0];
-                    CreateButtonTwo(reply);
+                    inputValues[1, 0] = activity.Text.ToString().Split('>')[0];
+
+                    // user ID
+                    string ChanData = activity.ChannelData.ToString();
+                    string ChanData2 = ChanData.Remove(0, 29);
+                    string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
+
+                    // insert value into database
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',1,'" + inputValues[0, 0] + "')";
+                            //撰寫query
+                            SqlCommand insertValue = new SqlCommand(sql, connection);
+                            insertValue.ExecuteNonQuery();
+                        }
+
+                        //reply.Text = inputValues[0, 0];
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+                    //show botton
+                    //CreateButtonTwo(reply);
                 }
                 else if (activity.Text.ToString() == "1>2" || activity.Text.ToString() == "2>2" || activity.Text.ToString() == "3>2" || activity.Text.ToString() == "4>2" || activity.Text.ToString() == "5>2" || activity.Text.ToString() == "6>2" || activity.Text.ToString() == "7>2")
                 {
-                    //reply.Text = inputValues[0, 0];
+                    // answer
                     inputValues[0, 3] = activity.Text.ToString().Split('>')[0];
                     inputValues[1, 3] = activity.Text.ToString().Split('>')[0];
+                    // user ID
+                    string ChanData = activity.ChannelData.ToString();
+                    string ChanData2 = ChanData.Remove(0, 29);
+                    string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
+
+                    // insert value into database
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',2,'" + inputValues[0, 3] + "')";
+                            //撰寫query
+                            SqlCommand insertValue = new SqlCommand(sql, connection);
+                            insertValue.ExecuteNonQuery();
+                        }
+
+                        //reply.Text = inputValues[0, 0];
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+
+                    // show botton
                     CreateButtonThree(reply);
                 }
                 else if (activity.Text.ToString() == "1>3" || activity.Text.ToString() == "2>3" || activity.Text.ToString() == "3>3" || activity.Text.ToString() == "4>3" || activity.Text.ToString() == "5>3" || activity.Text.ToString() == "6>3" || activity.Text.ToString() == "7>3" || activity.Text.ToString() == "8>3" || activity.Text.ToString() == "9>3" || activity.Text.ToString() == "10>3")
                 {
+                    // answer
                     inputValues[0, 4] = activity.Text.ToString().Split('>')[0];
                     inputValues[1, 4] = activity.Text.ToString().Split('>')[0];
+
+                    // user ID
+                    string ChanData = activity.ChannelData.ToString();
+                    string ChanData2 = ChanData.Remove(0, 29);
+                    string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
+
+                    // insert value into database
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',3,'" + inputValues[0, 4] + "')";
+                            //撰寫query
+                            SqlCommand insertValue = new SqlCommand(sql, connection);
+                            insertValue.ExecuteNonQuery();
+                        }
+
+                        //reply.Text = inputValues[0, 0];
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+
+                    // show botton
                     CreateButtonFour(reply);
                 }
                 else if (activity.Text.ToString() == "1>4" || activity.Text.ToString() == "2>4" || activity.Text.ToString() == "3>4" || activity.Text.ToString() == "4>4" || activity.Text.ToString() == "5>4" || activity.Text.ToString() == "6>4" || activity.Text.ToString() == "7>4" || activity.Text.ToString() == "8>4" || activity.Text.ToString() == "9>4" || activity.Text.ToString() == "10>4")
                 {
+                    // answer
                     inputValues[0, 5] = activity.Text.ToString().Split('>')[0];
                     inputValues[1, 5] = activity.Text.ToString().Split('>')[0];
+
+                    // user ID
+                    string ChanData = activity.ChannelData.ToString();
+                    string ChanData2 = ChanData.Remove(0, 29);
+                    string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
+
+                    // insert value into database
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',4,'" + inputValues[0, 5] + "')";
+                            //撰寫query
+                            SqlCommand insertValue = new SqlCommand(sql, connection);
+                            insertValue.ExecuteNonQuery();
+                        }
+
+                        //reply.Text = inputValues[0, 0];
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+
+                    // show botton
                     CreateButtonFive(reply);
                 }
                 else if (activity.Text.ToString() == "1>5" || activity.Text.ToString() == "2>5" || activity.Text.ToString() == "3>5" || activity.Text.ToString() == "4>5" || activity.Text.ToString() == "5>5" || activity.Text.ToString() == "6>5" || activity.Text.ToString() == "7>5" || activity.Text.ToString() == "8>5" || activity.Text.ToString() == "9>5" || activity.Text.ToString() == "10>5")
                 {
+                    // answer
                     inputValues[0, 6] = activity.Text.ToString().Split('>')[0];
                     inputValues[1, 6] = activity.Text.ToString().Split('>')[0];
+
+                    // user ID
+                    string ChanData = activity.ChannelData.ToString();
+                    string ChanData2 = ChanData.Remove(0, 29);
+                    string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
+
+                    // insert value into database
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',5,'" + inputValues[0, 6] + "')";
+                            //撰寫query
+                            SqlCommand insertValue = new SqlCommand(sql, connection);
+                            insertValue.ExecuteNonQuery();
+                        }
+
+                        //reply.Text = inputValues[0, 0];
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+
+                    // show botton
                     CreateButtonSix(reply);
                 }
                 else if (activity.Text.ToString() == "1>6" || activity.Text.ToString() == "2>6" || activity.Text.ToString() == "3>6" || activity.Text.ToString() == "4>6" || activity.Text.ToString() == "5>6" || activity.Text.ToString() == "6>6" || activity.Text.ToString() == "7>6" || activity.Text.ToString() == "8>6" || activity.Text.ToString() == "9>6" || activity.Text.ToString() == "10>6")
                 {
+                    // answer
                     inputValues[0, 7] = activity.Text.ToString().Split('>')[0];
                     inputValues[1, 7] = activity.Text.ToString().Split('>')[0];
+
+                    // user ID
+                    string ChanData = activity.ChannelData.ToString();
+                    string ChanData2 = ChanData.Remove(0, 29);
+                    string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
+
+                    // insert value into database
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',6,'" + inputValues[0, 7] + "')";
+                            //撰寫query
+                            SqlCommand insertValue = new SqlCommand(sql, connection);
+                            insertValue.ExecuteNonQuery();
+                        }
+
+                        //reply.Text = inputValues[0, 0];
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+
+                    // show botton
                     CreateButtonSeven(reply);
                 }
                 else if (activity.Text.ToString() == "1>7" || activity.Text.ToString() == "2>7" || activity.Text.ToString() == "3>7" || activity.Text.ToString() == "4>7" || activity.Text.ToString() == "5>7" || activity.Text.ToString() == "6>7" || activity.Text.ToString() == "7>7" || activity.Text.ToString() == "8>7" || activity.Text.ToString() == "9>7" || activity.Text.ToString() == "10>7")
                 {
+                    // answer
                     inputValues[0, 8] = activity.Text.ToString().Split('>')[0];
                     inputValues[1, 8] = activity.Text.ToString().Split('>')[0];
+
+                    // user ID
+                    string ChanData = activity.ChannelData.ToString();
+                    string ChanData2 = ChanData.Remove(0, 29);
+                    string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
+
+                    // insert value into database
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',7,'" + inputValues[0, 8] + "')";
+                            //撰寫query
+                            SqlCommand insertValue = new SqlCommand(sql, connection);
+                            insertValue.ExecuteNonQuery();
+                        }
+
+                        //reply.Text = inputValues[0, 0];
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+
+                    // show botton
                     CreateButtonEight(reply);
                 }
                 else if (activity.Text.ToString() == "1>8" || activity.Text.ToString() == "2>8" || activity.Text.ToString() == "3>8" || activity.Text.ToString() == "4>8" || activity.Text.ToString() == "5>8" || activity.Text.ToString() == "6>8" || activity.Text.ToString() == "7>8" || activity.Text.ToString() == "8>8" || activity.Text.ToString() == "9>8" || activity.Text.ToString() == "10>8")
                 {
+                    // answer
                     inputValues[0, 9] = activity.Text.ToString().Split('>')[0];
                     inputValues[1, 9] = activity.Text.ToString().Split('>')[0];
+
+                    // user ID
+                    string ChanData = activity.ChannelData.ToString();
+                    string ChanData2 = ChanData.Remove(0, 29);
+                    string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
+
+                    // insert value into database
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',8,'" + inputValues[0, 9] + "')";
+                            //撰寫query
+                            SqlCommand insertValue = new SqlCommand(sql, connection);
+                            insertValue.ExecuteNonQuery();
+                        }
+
+                        //reply.Text = inputValues[0, 0];
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+
+                    // show botton
                     CreateButtonNine(reply);
                 }
                 else if (activity.Text.ToString() == "1>9" || activity.Text.ToString() == "2>9" || activity.Text.ToString() == "3>9" || activity.Text.ToString() == "4>9" || activity.Text.ToString() == "5>9" || activity.Text.ToString() == "6>9" || activity.Text.ToString() == "7>9" || activity.Text.ToString() == "8>9" || activity.Text.ToString() == "9>9" || activity.Text.ToString() == "10>9")
                 {
+                    // answer
                     inputValues[0, 10] = activity.Text.ToString().Split('>')[0];
                     inputValues[1, 10] = activity.Text.ToString().Split('>')[0];
-                    // reply.Text = inputValues[0, 10];
-                    reply.Text = "55555";
+
+                    // user ID
+                    string ChanData = activity.ChannelData.ToString();
+                    string ChanData2 = ChanData.Remove(0, 29);
+                    string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
+
+                    // insert value into database
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',9,'" + inputValues[0, 10] + "')";
+                            //撰寫query
+                            SqlCommand insertValue = new SqlCommand(sql, connection);
+                            insertValue.ExecuteNonQuery();
+                        }
+
+                        //reply.Text = inputValues[0, 0];
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+
+                    //reply.Text = "55555";
+                    /*
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            //撰寫query
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("SELECT [answer] ");
+                            sb.Append("FROM [dbo].[Message]");
+                            sb.Append("Where [id]=" + );
+                            String sql = sb.ToString();
+                            using (var cmd = new SqlCommand(sql, connection))
+                            {
+                                url = (string)cmd.ExecuteScalar();
+                            }
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+                    */
                     //await InvokeRequestResponseService(reply, inputValues);
                 }
                 else if (activity.Text == "我好飢渴")
@@ -182,89 +462,22 @@ namespace Single2Double
                         {
                             //辨識圖片
                             var url = fbData.postback.payload.Split('>')[1];
-                            reply.Text = $"{url}";
-                            string stringurl = url.ToString();
+                            //reply.Text = $"{url}";
+                            FaceServiceClient client = new FaceServiceClient("df30d486a01b4ee9bbf913a324795d62", "https://southeastasia.api.cognitive.microsoft.com/face/v1.0");
+                            var faces = await client.DetectAsync(
+                                url,
+                                true,
+                                false
+                                );
 
-                            HttpClient client = new HttpClient();
-                            // Request headers.
-                            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "df30d486a01b4ee9bbf913a324795d62");
-
-                            // Request parameters. A third optional parameter is "details".
-                            string requestParameters = "returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
-
-                            // Assemble the URI for the REST API Call.
-                            string uri = "https://southeastasia.api.cognitive.microsoft.com/face/v1.0/detect" + "?" + requestParameters;
-
-                            HttpResponseMessage newresponse;
-
-                            CreateImageUri createImageUri = new CreateImageUri();
-                            createImageUri.url = url;
-                            byte[] byteData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(createImageUri).ToString());
-
-                            using (ByteArrayContent content = new ByteArrayContent(byteData))
+                            foreach (var face in faces)
                             {
-                                //This example uses content type "application/octet-stream".
-                                // The other content types you can use are "application/json" and "multipart/form-data".
-                                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                                var id = face.FaceId;
 
-                                // Execute the REST API call.
-                                newresponse = await client.PostAsync(uri, content);
-
-
-                                //facedetectJSON facedetectjson = new facedetectJSON();
-                                // Get the JSON response.
-
-                                string contentString = await newresponse.Content.ReadAsStringAsync();
-                                
-                                var facedetectjson = JsonConvert.DeserializeObject<facedetectJSON[]>(contentString);
-                                string arrtibute;
-                                arrtibute = facedetectjson[0].faceAttributes.smile.ToString();
-                                arrtibute += "," + facedetectjson[0].faceAttributes.headPose.pitch;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.headPose.roll;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.headPose.yaw;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.gender;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.age;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.facialHair.moustache;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.facialHair.beard;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.facialHair.sideburns;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.glasses;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.anger;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.contempt;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.disgust;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.fear;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.happiness;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.neutral;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.sadness;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.surprise;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.blur.blurLevel;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.blur.value;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.exposure.exposureLevel;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.exposure.value;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.noise.noiseLevel;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.noise.value;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.makeup.eyeMakeup;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.makeup.lipMakeup;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.accessories;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.occlusion.foreheadOccluded;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.occlusion.eyeOccluded;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.occlusion.mouthOccluded;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.bald;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.invisible;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[0].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[0].confidence;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[1].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[1].confidence;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[2].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[2].confidence;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[3].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[3].confidence;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[4].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[4].confidence;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[5].color;
-                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[5].confidence;
-                                reply.Text = arrtibute; await connector.Conversations.ReplyToActivityAsync(reply);
-                                ttt.faceId = facedetectjson[0].faceId.ToString();
-                                winer.faceId = facedetectjson[0].faceId.ToString();
+                                //reply.Text = "HI";
+                                //reply.Text = $"{id}";
+                                ttt.faceId = id.ToString();
+                                winer.faceId = id.ToString();
                                 string body = JsonConvert.SerializeObject(ttt).ToString();
                                 string body2 = JsonConvert.SerializeObject(winer).ToString();
                                 MakeRequest(body, activity, "單身", Confidence_s);
@@ -282,84 +495,6 @@ namespace Single2Double
                                     await connector.Conversations.ReplyToActivityAsync(reply);
                                 }
                             }
-
-                            //FaceServiceClient client = new FaceServiceClient("df30d486a01b4ee9bbf913a324795d62", "https://southeastasia.api.cognitive.microsoft.com/face/v1.0");
-                            //var faces = await client.DetectAsync(
-                            //    url,
-                            //    true,
-                            //    false
-                            //);
-                            //foreach (var face in faces)
-                            //{
-                            //    var id = face.FaceId;
-
-                            //    //string arrtibute;
-                            //    //arrtibute = face.FaceAttributes.Smile.ToString();
-                            //    //arrtibute += "," + face.FaceAttributes.HeadPose.Pitch;
-                            //    //arrtibute += "," + face.FaceAttributes.HeadPose.Roll;
-                            //    //arrtibute += "," + face.FaceAttributes.HeadPose.Yaw;
-                            //    //arrtibute += "," + face.FaceAttributes.Gender;
-                            //    //arrtibute += "," + face.FaceAttributes.Age;
-                            //    //arrtibute += "," + face.FaceAttributes.FacialHair.Moustache;
-                            //    //arrtibute += "," + face.FaceAttributes.FacialHair.Beard;
-                            //    //arrtibute += "," + face.FaceAttributes.FacialHair.Sideburns;
-                            //    //arrtibute += "," + face.FaceAttributes.Glasses;
-                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Anger;
-                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Contempt;
-                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Disgust;
-                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Fear;
-                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Happiness;
-                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Neutral;
-                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Sadness;
-                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Surprise;
-                            //    //arrtibute += "," + face.FaceAttributes.Blur.BlurLevel;
-                            //    //arrtibute += "," + face.FaceAttributes.Blur.Value;
-                            //    //arrtibute += "," + face.FaceAttributes.Exposure.ExposureLevel;
-                            //    //arrtibute += "," + face.FaceAttributes.Exposure.Value;
-                            //    //arrtibute += "," + face.FaceAttributes.Noise.NoiseLevel;
-                            //    //arrtibute += "," + face.FaceAttributes.Noise.Value;
-                            //    //arrtibute += "," + face.FaceAttributes.Makeup.EyeMakeup;
-                            //    //arrtibute += "," + face.FaceAttributes.Makeup.LipMakeup;
-                            //    //arrtibute += "," + face.FaceAttributes.Accessories;
-                            //    //arrtibute += "," + face.FaceAttributes.Occlusion.ForeheadOccluded;
-                            //    //arrtibute += "," + face.FaceAttributes.Occlusion.EyeOccluded;
-                            //    //arrtibute += "," + face.FaceAttributes.Occlusion.MouthOccluded;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.Bald;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.Invisible;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[0].Color;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[0].Confidence;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[1].Color;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[1].Confidence;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[2].Color;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[2].Confidence;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[3].Color;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[3].Confidence;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[4].Color;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[4].Confidence;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[5].Color;
-                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[5].Confidence;
-
-                            //    //reply.Text = "HI";
-                            //    //reply.Text = $"{id}";
-                            //    ttt.faceId = id.ToString();
-                            //    winer.faceId = id.ToString();
-                            //    string body = JsonConvert.SerializeObject(ttt).ToString();
-                            //    string body2 = JsonConvert.SerializeObject(winer).ToString();
-                            //    MakeRequest(body, activity, "單身", Confidence_s);
-                            //    MakeRequest(body2, activity, "不是單身", Confidence_ns);
-                            //    // await connector.Conversations.ReplyToActivityAsync(reply);
-                            //    Confidence_s = Confidence_s - Confidence_ns;
-                            //    if (Confidence_s > 0)
-                            //    {
-                            //        reply.Text = "這個人應該是單身";
-                            //        await connector.Conversations.ReplyToActivityAsync(reply);
-                            //    }
-                            //    if (Confidence_s < 0)
-                            //    {
-                            //        reply.Text = "這個人應該不是是單身";
-                            //        await connector.Conversations.ReplyToActivityAsync(reply);
-                            //    }
-                            //}
                             // Console.WriteLine("Hit ENTER to exit...");
                             // Console.ReadLine();
                         }
