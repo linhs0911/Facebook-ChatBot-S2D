@@ -34,7 +34,6 @@ namespace Single2Double
         private float Confidence_ns;
 
         public string[,] inputValues = new string[2, 11];
-        public string input1, input2, input3, input4, input5, input6, input7, input8, input9;
 
         /// <summary>
         /// POST: api/Messages
@@ -104,11 +103,43 @@ namespace Single2Double
                     //show botton
                     CreateButtonTwo(reply);
                 }
+                //上傳年紀
                 else if (activity.Text.ToString() == "1>2" || activity.Text.ToString() == "2>2" || activity.Text.ToString() == "3>2" || activity.Text.ToString() == "4>2" || activity.Text.ToString() == "5>2" || activity.Text.ToString() == "6>2" || activity.Text.ToString() == "7>2")
                 {
+                    inputValues[0, 2] = activity.Text.ToString().Split('>')[0];
+                    inputValues[1, 2] = activity.Text.ToString().Split('>')[0];
+                    string ChanData = activity.ChannelData.ToString();
+                    string ChanData2 = ChanData.Remove(0, 29);
+                    string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
+                    reply.Text = "請問你的年紀(0~200)?";
+                    try
+                    {
+                        using (var connection = new SqlConnection(cb.ConnectionString))
+                        {
+                            //建立資料庫連線
+                            connection.Open();
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',2,'" + inputValues[0, 2] + "')";
+                            //撰寫query
+                            SqlCommand insertValue = new SqlCommand(sql, connection);
+                            insertValue.ExecuteNonQuery();
+                        }
+
+                        
+                        
+                    }
+                    catch (SqlException e)
+                    {
+                        reply.Text = "沒成功";
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                    }
+                }
+               
+                else if (Int32.Parse("activity.Text")>0)
+                {
+                    reply.Text = Int32.Parse("activity.Text").ToString();
                     // answer
-                    inputValues[0, 3] = activity.Text.ToString().Split('>')[0];
-                    inputValues[1, 3] = activity.Text.ToString().Split('>')[0];
+                    inputValues[0, 3] = activity.Text.ToString();
+                    inputValues[1, 3] = activity.Text.ToString();
                     // user ID
                     string ChanData = activity.ChannelData.ToString();
                     string ChanData2 = ChanData.Remove(0, 29);
@@ -121,7 +152,7 @@ namespace Single2Double
                         {
                             //建立資料庫連線
                             connection.Open();
-                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',2,'" + inputValues[0, 3] + "')";
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',3,'" + inputValues[0, 3] + "')";
                             //撰寫query
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
@@ -156,7 +187,7 @@ namespace Single2Double
                         {
                             //建立資料庫連線
                             connection.Open();
-                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',3,'" + inputValues[0, 4] + "')";
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',4,'" + inputValues[0, 4] + "')";
                             //撰寫query
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
@@ -191,7 +222,7 @@ namespace Single2Double
                         {
                             //建立資料庫連線
                             connection.Open();
-                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',4,'" + inputValues[0, 5] + "')";
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',5,'" + inputValues[0, 5] + "')";
                             //撰寫query
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
@@ -226,7 +257,7 @@ namespace Single2Double
                         {
                             //建立資料庫連線
                             connection.Open();
-                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',5,'" + inputValues[0, 6] + "')";
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',6,'" + inputValues[0, 6] + "')";
                             //撰寫query
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
@@ -261,7 +292,7 @@ namespace Single2Double
                         {
                             //建立資料庫連線
                             connection.Open();
-                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',6,'" + inputValues[0, 7] + "')";
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',7,'" + inputValues[0, 7] + "')";
                             //撰寫query
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
@@ -278,6 +309,7 @@ namespace Single2Double
                     // show botton
                     CreateButtonSeven(reply);
                 }
+                
                 else if (activity.Text.ToString() == "1>7" || activity.Text.ToString() == "2>7" || activity.Text.ToString() == "3>7" || activity.Text.ToString() == "4>7" || activity.Text.ToString() == "5>7" || activity.Text.ToString() == "6>7" || activity.Text.ToString() == "7>7" || activity.Text.ToString() == "8>7" || activity.Text.ToString() == "9>7" || activity.Text.ToString() == "10>7")
                 {
                     // answer
@@ -296,7 +328,7 @@ namespace Single2Double
                         {
                             //建立資料庫連線
                             connection.Open();
-                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',7,'" + inputValues[0, 8] + "')";
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',8,'" + inputValues[0, 8] + "')";
                             //撰寫query
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
@@ -331,7 +363,7 @@ namespace Single2Double
                         {
                             //建立資料庫連線
                             connection.Open();
-                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',8,'" + inputValues[0, 9] + "')";
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',9,'" + inputValues[0, 9] + "')";
                             //撰寫query
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
@@ -366,7 +398,7 @@ namespace Single2Double
                         {
                             //建立資料庫連線
                             connection.Open();
-                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',9,'" + inputValues[0, 10] + "')";
+                            string sql = "INSERT INTO [dbo].[Message] ([id],[question],[message]) VALUES ('" + ChanData3 + "',10,'" + inputValues[0, 10] + "')";
                             //撰寫query
                             SqlCommand insertValue = new SqlCommand(sql, connection);
                             insertValue.ExecuteNonQuery();
@@ -379,10 +411,10 @@ namespace Single2Double
                         reply.Text = "沒成功";
                         await connector.Conversations.ReplyToActivityAsync(reply);
                     }
+                   
 
                     //reply.Text = "55555";
-
-                    // call data from database
+                    /*
                     try
                     {
                         using (var connection = new SqlConnection(cb.ConnectionString))
@@ -390,14 +422,14 @@ namespace Single2Double
                             //建立資料庫連線
                             connection.Open();
                             //撰寫query
-                            StringBuilder sb1 = new StringBuilder();
-                            sb1.Append("SELECT [answer] ");
-                            sb1.Append("FROM [dbo].[Message]");
-                            sb1.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "1");
-                            String sql = sb1.ToString();
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("SELECT [answer] ");
+                            sb.Append("FROM [dbo].[Message]");
+                            sb.Append("Where [id]=" + );
+                            String sql = sb.ToString();
                             using (var cmd = new SqlCommand(sql, connection))
                             {
-                                input1 = (string)cmd.ExecuteScalar();
+                                url = (string)cmd.ExecuteScalar();
                             }
                         }
                     }
@@ -406,199 +438,8 @@ namespace Single2Double
                         reply.Text = "沒成功";
                         await connector.Conversations.ReplyToActivityAsync(reply);
                     }
-
-                    try
-                    {
-                        using (var connection = new SqlConnection(cb.ConnectionString))
-                        {
-                            //建立資料庫連線
-                            connection.Open();
-                            //撰寫query
-                            StringBuilder sb2 = new StringBuilder();
-                            sb2.Append("SELECT [answer] ");
-                            sb2.Append("FROM [dbo].[Message]");
-                            sb2.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "2");
-                            String sql = sb2.ToString();
-                            using (var cmd = new SqlCommand(sql, connection))
-                            {
-                                input2 = (string)cmd.ExecuteScalar();
-                            }
-                        }
-                    }
-                    catch (SqlException e)
-                    {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
-                    }
-
-                    try
-                    {
-                        using (var connection = new SqlConnection(cb.ConnectionString))
-                        {
-                            //建立資料庫連線
-                            connection.Open();
-                            //撰寫query
-                            StringBuilder sb3 = new StringBuilder();
-                            sb3.Append("SELECT [answer] ");
-                            sb3.Append("FROM [dbo].[Message]");
-                            sb3.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "3");
-                            String sql = sb3.ToString();
-                            using (var cmd = new SqlCommand(sql, connection))
-                            {
-                                input3 = (string)cmd.ExecuteScalar();
-                            }
-                        }
-                    }
-                    catch (SqlException e)
-                    {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
-                    }
-
-                    try
-                    {
-                        using (var connection = new SqlConnection(cb.ConnectionString))
-                        {
-                            //建立資料庫連線
-                            connection.Open();
-                            //撰寫query
-                            StringBuilder sb4 = new StringBuilder();
-                            sb4.Append("SELECT [answer] ");
-                            sb4.Append("FROM [dbo].[Message]");
-                            sb4.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "4");
-                            String sql = sb4.ToString();
-                            using (var cmd = new SqlCommand(sql, connection))
-                            {
-                                input4 = (string)cmd.ExecuteScalar();
-                            }
-                        }
-                    }
-                    catch (SqlException e)
-                    {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
-                    }
-
-                    try
-                    {
-                        using (var connection = new SqlConnection(cb.ConnectionString))
-                        {
-                            //建立資料庫連線
-                            connection.Open();
-                            //撰寫query
-                            StringBuilder sb5 = new StringBuilder();
-                            sb5.Append("SELECT [answer] ");
-                            sb5.Append("FROM [dbo].[Message]");
-                            sb5.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "5");
-                            String sql = sb5.ToString();
-                            using (var cmd = new SqlCommand(sql, connection))
-                            {
-                                input5 = (string)cmd.ExecuteScalar();
-                            }
-                        }
-                    }
-                    catch (SqlException e)
-                    {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
-                    }
-
-                    try
-                    {
-                        using (var connection = new SqlConnection(cb.ConnectionString))
-                        {
-                            //建立資料庫連線
-                            connection.Open();
-                            //撰寫query
-                            StringBuilder sb6 = new StringBuilder();
-                            sb6.Append("SELECT [answer] ");
-                            sb6.Append("FROM [dbo].[Message]");
-                            sb6.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "6");
-                            String sql = sb6.ToString();
-                            using (var cmd = new SqlCommand(sql, connection))
-                            {
-                                input6 = (string)cmd.ExecuteScalar();
-                            }
-                        }
-                    }
-                    catch (SqlException e)
-                    {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
-                    }
-
-                    try
-                    {
-                        using (var connection = new SqlConnection(cb.ConnectionString))
-                        {
-                            //建立資料庫連線
-                            connection.Open();
-                            //撰寫query
-                            StringBuilder sb7 = new StringBuilder();
-                            sb7.Append("SELECT [answer] ");
-                            sb7.Append("FROM [dbo].[Message]");
-                            sb7.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "7");
-                            String sql = sb7.ToString();
-                            using (var cmd = new SqlCommand(sql, connection))
-                            {
-                                input7 = (string)cmd.ExecuteScalar();
-                            }
-                        }
-                    }
-                    catch (SqlException e)
-                    {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
-                    }
-
-                    try
-                    {
-                        using (var connection = new SqlConnection(cb.ConnectionString))
-                        {
-                            //建立資料庫連線
-                            connection.Open();
-                            //撰寫query
-                            StringBuilder sb8 = new StringBuilder();
-                            sb8.Append("SELECT [answer] ");
-                            sb8.Append("FROM [dbo].[Message]");
-                            sb8.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "8");
-                            String sql = sb8.ToString();
-                            using (var cmd = new SqlCommand(sql, connection))
-                            {
-                                input8 = (string)cmd.ExecuteScalar();
-                            }
-                        }
-                    }
-                    catch (SqlException e)
-                    {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
-                    }
-                    try
-                    {
-                        using (var connection = new SqlConnection(cb.ConnectionString))
-                        {
-                            //建立資料庫連線
-                            connection.Open();
-                            //撰寫query
-                            StringBuilder sb9 = new StringBuilder();
-                            sb9.Append("SELECT [answer] ");
-                            sb9.Append("FROM [dbo].[Message]");
-                            sb9.Append("Where [id]= '" + ChanData3 + "' AND [question]=" + "7");
-                            String sql = sb9.ToString();
-                            using (var cmd = new SqlCommand(sql, connection))
-                            {
-                                input9 = (string)cmd.ExecuteScalar();
-                            }
-                        }
-                    }
-                    catch (SqlException e)
-                    {
-                        reply.Text = "沒成功";
-                        await connector.Conversations.ReplyToActivityAsync(reply);
-                    }
-
-                    await InvokeRequestResponseService(reply, input1, "20", input2, input3, input4, input5, input6, input7, input8, input9);
+                    */
+                    //await InvokeRequestResponseService(reply, inputValues);
                 }
                 else if (activity.Text == "我好飢渴")
                 {
@@ -1034,7 +875,7 @@ namespace Single2Double
             return null;
         }
 
-        private static async Task InvokeRequestResponseService(Activity reply, string value1, string value2, string value3, string value4, string value5, string value6, string value7, string value8, string value9, string value10)
+        private static async Task InvokeRequestResponseService(Activity reply, string[,] value)
         {
             using (var client = new HttpClient())
             {
@@ -1046,8 +887,8 @@ namespace Single2Double
                             new StringTable()
                             {
                                 ColumnNames = new string[] {"gender", "dec_o", "age", "go_out", "sports", "tvsports", "hiking", "gaming", "tv", "shopping", "yoga"},
-                                Values = new string[,] { { value1, "0", value2, value3, value4, value5, value6, value7, value8, value9, value10},
-                                                                      { value1, "0", value2, value3, value4, value5, value6, value7, value8, value9, value10}, }
+                                Values = new string[,] { { value[0, 0], value[0, 1], value[0, 2], value[0, 3], value[0, 4], value[0, 5], value[0, 6], value[0, 7], value[0, 8], value[0, 9], value[0, 10] },
+                                                                    { value[1, 0], value[1, 1], value[1, 2], value[1, 3], value[1, 4], value[1, 5], value[1, 6], value[1, 7], value[1, 8], value[1, 9], value[1, 10] }, }
                              }
                         },
                     },
@@ -1083,10 +924,8 @@ namespace Single2Double
                 {
                     reply.Text = "幹你娘";
                     /*Console.WriteLine(string.Format("The request failed with status code: {0}", response.StatusCode));
-
                     // Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
                     Console.WriteLine(response.Headers.ToString());
-
                     string responseContent = await response.Content.ReadAsStringAsync();
                     Console.WriteLine(responseContent);*/
                 }
