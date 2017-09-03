@@ -23,6 +23,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -134,8 +135,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Class2.cs" />
+    <Compile Include="Class3.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="CreateImageUri.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
+    <Compile Include="face.config.cs" />
+    <Compile Include="facedetectJSON.cs" />
     <Compile Include="FBChannelModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -46,3 +46,53 @@ D:\Desktop\S2D\Single2Double\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
 D:\Desktop\S2D\Single2Double\obj\Debug\Single2Double.csproj.App.config
 D:\Desktop\S2D\Single2Double\obj\Debug\Bot Application.dll
 D:\Desktop\S2D\Single2Double\obj\Debug\Bot Application.pdb
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Bot Application.dll.config
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Bot Application.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Bot Application.pdb
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Autofac.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Chronic.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.Bot.Builder.Autofac.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.Bot.Builder.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.Bot.Connector.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.ProjectOxford.Common.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.ProjectOxford.Face.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.ProjectOxford.Vision.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.Rest.ClientRuntime.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Newtonsoft.Json.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.Net.Http.Extensions.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.Net.Http.Formatting.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.Net.Http.Primitives.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.Web.Http.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.Web.Http.WebHost.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Autofac.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.Bot.Builder.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.Bot.Builder.Autofac.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.Bot.Connector.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.Rest.ClientRuntime.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\Newtonsoft.Json.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.Net.Http.Extensions.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.Net.Http.Formatting.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.Net.Http.Primitives.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.Web.Http.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\System.Web.Http.WebHost.xml
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\ar\Microsoft.Bot.Builder.resources.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\cs\Microsoft.Bot.Builder.resources.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\de-dE\Microsoft.Bot.Builder.resources.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\en\Microsoft.Bot.Builder.resources.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\es\Microsoft.Bot.Builder.resources.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\fa\Microsoft.Bot.Builder.resources.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\fr\Microsoft.Bot.Builder.resources.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\ja\Microsoft.Bot.Builder.resources.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\ru\Microsoft.Bot.Builder.resources.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\obj\Debug\Single2Double.csproj.App.config
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\obj\Debug\Single2Double.csprojResolveAssemblyReference.cache
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\obj\Debug\Single2Double.csproj.CoreCompileInputs.cache
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\obj\Debug\Bot Application.dll
+C:\Users\stanl\OneDrive\12th微軟學生大使\2017HackNTU\S2D_hack_final\Facebook-ChatBot-S2D\Single2Double\obj\Debug\Bot Application.pdb

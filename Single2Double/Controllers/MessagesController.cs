@@ -182,22 +182,89 @@ namespace Single2Double
                         {
                             //辨識圖片
                             var url = fbData.postback.payload.Split('>')[1];
-                            //reply.Text = $"{url}";
-                            FaceServiceClient client = new FaceServiceClient("df30d486a01b4ee9bbf913a324795d62", "https://southeastasia.api.cognitive.microsoft.com/face/v1.0");
-                            var faces = await client.DetectAsync(
-                                url,
-                                true,
-                                false
-                                );
+                            reply.Text = $"{url}";
+                            string stringurl = url.ToString();
 
-                            foreach (var face in faces)
+                            HttpClient client = new HttpClient();
+                            // Request headers.
+                            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "df30d486a01b4ee9bbf913a324795d62");
+
+                            // Request parameters. A third optional parameter is "details".
+                            string requestParameters = "returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
+
+                            // Assemble the URI for the REST API Call.
+                            string uri = "https://southeastasia.api.cognitive.microsoft.com/face/v1.0/detect" + "?" + requestParameters;
+
+                            HttpResponseMessage newresponse;
+
+                            CreateImageUri createImageUri = new CreateImageUri();
+                            createImageUri.url = url;
+                            byte[] byteData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(createImageUri).ToString());
+
+                            using (ByteArrayContent content = new ByteArrayContent(byteData))
                             {
-                                var id = face.FaceId;
+                                //This example uses content type "application/octet-stream".
+                                // The other content types you can use are "application/json" and "multipart/form-data".
+                                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                                //reply.Text = "HI";
-                                //reply.Text = $"{id}";
-                                ttt.faceId = id.ToString();
-                                winer.faceId = id.ToString();
+                                // Execute the REST API call.
+                                newresponse = await client.PostAsync(uri, content);
+
+
+                                //facedetectJSON facedetectjson = new facedetectJSON();
+                                // Get the JSON response.
+
+                                string contentString = await newresponse.Content.ReadAsStringAsync();
+                                
+                                var facedetectjson = JsonConvert.DeserializeObject<facedetectJSON[]>(contentString);
+                                string arrtibute;
+                                arrtibute = facedetectjson[0].faceAttributes.smile.ToString();
+                                arrtibute += "," + facedetectjson[0].faceAttributes.headPose.pitch;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.headPose.roll;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.headPose.yaw;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.gender;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.age;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.facialHair.moustache;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.facialHair.beard;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.facialHair.sideburns;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.glasses;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.anger;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.contempt;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.disgust;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.fear;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.happiness;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.neutral;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.sadness;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.emotion.surprise;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.blur.blurLevel;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.blur.value;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.exposure.exposureLevel;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.exposure.value;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.noise.noiseLevel;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.noise.value;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.makeup.eyeMakeup;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.makeup.lipMakeup;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.accessories;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.occlusion.foreheadOccluded;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.occlusion.eyeOccluded;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.occlusion.mouthOccluded;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.bald;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.invisible;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[0].color;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[0].confidence;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[1].color;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[1].confidence;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[2].color;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[2].confidence;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[3].color;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[3].confidence;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[4].color;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[4].confidence;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[5].color;
+                                arrtibute += "," + facedetectjson[0].faceAttributes.hair.hairColor[5].confidence;
+                                reply.Text = arrtibute; await connector.Conversations.ReplyToActivityAsync(reply);
+                                ttt.faceId = facedetectjson[0].faceId.ToString();
+                                winer.faceId = facedetectjson[0].faceId.ToString();
                                 string body = JsonConvert.SerializeObject(ttt).ToString();
                                 string body2 = JsonConvert.SerializeObject(winer).ToString();
                                 MakeRequest(body, activity, "單身", Confidence_s);
@@ -215,6 +282,84 @@ namespace Single2Double
                                     await connector.Conversations.ReplyToActivityAsync(reply);
                                 }
                             }
+
+                            //FaceServiceClient client = new FaceServiceClient("df30d486a01b4ee9bbf913a324795d62", "https://southeastasia.api.cognitive.microsoft.com/face/v1.0");
+                            //var faces = await client.DetectAsync(
+                            //    url,
+                            //    true,
+                            //    false
+                            //);
+                            //foreach (var face in faces)
+                            //{
+                            //    var id = face.FaceId;
+
+                            //    //string arrtibute;
+                            //    //arrtibute = face.FaceAttributes.Smile.ToString();
+                            //    //arrtibute += "," + face.FaceAttributes.HeadPose.Pitch;
+                            //    //arrtibute += "," + face.FaceAttributes.HeadPose.Roll;
+                            //    //arrtibute += "," + face.FaceAttributes.HeadPose.Yaw;
+                            //    //arrtibute += "," + face.FaceAttributes.Gender;
+                            //    //arrtibute += "," + face.FaceAttributes.Age;
+                            //    //arrtibute += "," + face.FaceAttributes.FacialHair.Moustache;
+                            //    //arrtibute += "," + face.FaceAttributes.FacialHair.Beard;
+                            //    //arrtibute += "," + face.FaceAttributes.FacialHair.Sideburns;
+                            //    //arrtibute += "," + face.FaceAttributes.Glasses;
+                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Anger;
+                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Contempt;
+                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Disgust;
+                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Fear;
+                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Happiness;
+                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Neutral;
+                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Sadness;
+                            //    //arrtibute += "," + face.FaceAttributes.Emotion.Surprise;
+                            //    //arrtibute += "," + face.FaceAttributes.Blur.BlurLevel;
+                            //    //arrtibute += "," + face.FaceAttributes.Blur.Value;
+                            //    //arrtibute += "," + face.FaceAttributes.Exposure.ExposureLevel;
+                            //    //arrtibute += "," + face.FaceAttributes.Exposure.Value;
+                            //    //arrtibute += "," + face.FaceAttributes.Noise.NoiseLevel;
+                            //    //arrtibute += "," + face.FaceAttributes.Noise.Value;
+                            //    //arrtibute += "," + face.FaceAttributes.Makeup.EyeMakeup;
+                            //    //arrtibute += "," + face.FaceAttributes.Makeup.LipMakeup;
+                            //    //arrtibute += "," + face.FaceAttributes.Accessories;
+                            //    //arrtibute += "," + face.FaceAttributes.Occlusion.ForeheadOccluded;
+                            //    //arrtibute += "," + face.FaceAttributes.Occlusion.EyeOccluded;
+                            //    //arrtibute += "," + face.FaceAttributes.Occlusion.MouthOccluded;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.Bald;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.Invisible;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[0].Color;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[0].Confidence;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[1].Color;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[1].Confidence;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[2].Color;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[2].Confidence;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[3].Color;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[3].Confidence;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[4].Color;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[4].Confidence;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[5].Color;
+                            //    //arrtibute += "," + face.FaceAttributes.Hair.HairColor[5].Confidence;
+
+                            //    //reply.Text = "HI";
+                            //    //reply.Text = $"{id}";
+                            //    ttt.faceId = id.ToString();
+                            //    winer.faceId = id.ToString();
+                            //    string body = JsonConvert.SerializeObject(ttt).ToString();
+                            //    string body2 = JsonConvert.SerializeObject(winer).ToString();
+                            //    MakeRequest(body, activity, "單身", Confidence_s);
+                            //    MakeRequest(body2, activity, "不是單身", Confidence_ns);
+                            //    // await connector.Conversations.ReplyToActivityAsync(reply);
+                            //    Confidence_s = Confidence_s - Confidence_ns;
+                            //    if (Confidence_s > 0)
+                            //    {
+                            //        reply.Text = "這個人應該是單身";
+                            //        await connector.Conversations.ReplyToActivityAsync(reply);
+                            //    }
+                            //    if (Confidence_s < 0)
+                            //    {
+                            //        reply.Text = "這個人應該不是是單身";
+                            //        await connector.Conversations.ReplyToActivityAsync(reply);
+                            //    }
+                            //}
                             // Console.WriteLine("Hit ENTER to exit...");
                             // Console.ReadLine();
                         }
