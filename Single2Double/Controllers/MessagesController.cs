@@ -111,7 +111,7 @@ namespace Single2Double
                     string ChanData = activity.ChannelData.ToString();
                     string ChanData2 = ChanData.Remove(0, 29);
                     string ChanData3 = ChanData2.Remove(16, ChanData2.Length - 16);
-                    reply.Text = "請問你的年紀(0~200)?";
+                   
                     try
                     {
                         using (var connection = new SqlConnection(cb.ConnectionString))
@@ -129,9 +129,11 @@ namespace Single2Double
                     }
                     catch (SqlException e)
                     {
-                        reply.Text = "沒成功";
+                        reply.Text = "0000";
+                        //reply.Text = Int32.Parse("activity.Text").ToString();
                         await connector.Conversations.ReplyToActivityAsync(reply);
                     }
+                    reply.Text = "請問你的年紀(0~200)?";
                 }
                
                 else if (Int32.Parse("activity.Text")>0)
@@ -414,8 +416,8 @@ namespace Single2Double
                    
 
                     //reply.Text = "55555";
-                    /*
-                    try
+                    
+                    /*try
                     {
                         using (var connection = new SqlConnection(cb.ConnectionString))
                         {
@@ -437,8 +439,8 @@ namespace Single2Double
                     {
                         reply.Text = "沒成功";
                         await connector.Conversations.ReplyToActivityAsync(reply);
-                    }
-                    */
+                    }*/
+                    
                     //await InvokeRequestResponseService(reply, inputValues);
                 }
                 else if (activity.Text == "我好飢渴")
