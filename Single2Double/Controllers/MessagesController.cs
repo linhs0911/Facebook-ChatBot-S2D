@@ -516,19 +516,19 @@ namespace Single2Double
                                 winer.faceId = id.ToString();
                                 string body = JsonConvert.SerializeObject(ttt).ToString();
                                 string body2 = JsonConvert.SerializeObject(winer).ToString();
-                                MakeRequest(body, activity, "單身", Confidence_s);
-                                MakeRequest(body2, activity, "不是單身", Confidence_ns);
+                                Confidence_s= MakeRequest(body, activity, "單身", Confidence_s);
+                                Confidence_ns= MakeRequest(body2, activity, "不是單身", Confidence_ns);
                                 // await connector.Conversations.ReplyToActivityAsync(reply);
                                 Confidence_s = Confidence_s - Confidence_ns;
                                 if (Confidence_s > 0)
                                 {
-                                    reply.Text = "這個人應該是單身";
-                                    await connector.Conversations.ReplyToActivityAsync(reply);
+                                    reply.Text = "這個人應該是單身, 他是單身的機率比非單身高"+ Confidence_s*100+"%";
+                                    //await connector.Conversations.ReplyToActivityAsync(reply);
                                 }
                                 if (Confidence_s < 0)
                                 {
-                                    reply.Text = "這個人應該不是是單身";
-                                    await connector.Conversations.ReplyToActivityAsync(reply);
+                                    reply.Text = "這個人應該不是單身,他是單身的機率比非單身高"+ Confidence_s*-100+"%";
+                                    //await connector.Conversations.ReplyToActivityAsync(reply);
                                 }
                             }
                             // Console.WriteLine("Hit ENTER to exit...");
@@ -548,7 +548,7 @@ namespace Single2Double
         }
 
         //verify
-        private static async void MakeRequest(string body, Activity activity, string status, float Confidence)
+        private static async Task<float> MakeRequest(string body, Activity activity, string status, float Confidence)
         {
             var client = new HttpClient();
             var queryString = HttpUtility.ParseQueryString(string.Empty);
@@ -578,8 +578,7 @@ namespace Single2Double
                 JObject rss = JObject.Parse(datareply.Text);
                 Confidence = (float)rss["confidence"];
 
-                datareply.Text = $"他跟{status}的人的長相有 {Confidence} 的相似度";
-                await connector.Conversations.ReplyToActivityAsync(datareply);
+               return Confidence;
             }
         }
 
